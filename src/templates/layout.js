@@ -1,6 +1,6 @@
 import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, footerColumns } from "../data/site.js";
 
-const assetVersion = "20260721-footer";
+const assetVersion = "20260721-seo1";
 
 const citySites = [
   { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },
@@ -263,6 +263,9 @@ ${schemaTags}
 ${body}
 </main>
 ${renderFooter()}
+<div class="sticky-call-bar" aria-label="Call for a free estimate">
+  <a href="tel:${site.phoneTel}">Call ${site.phoneDisplay} — Free Estimate</a>
+</div>
 ${
   includeHeroCanvas
     ? `<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>

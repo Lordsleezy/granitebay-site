@@ -28,7 +28,7 @@ export function renderHomePage() {
       <p class="sub">Fence contractor in Granite Bay — luxury estate fencing, HOA-approved designs, pool barriers, ranch lines, and custom gates for Placer County's premier residential community</p>
       <a href="#contact" class="btn-gold">Get a Free Estimate</a>
       <div class="google-trust-bar" aria-label="Twin Rivers Fence Google review summary">
-        <a class="google-review-link" href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer"><span class="google-star-row" aria-label="Reviews on Google">★★★★★</span> Twin Rivers Fence</a>
+        <a class="google-review-link" href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer"><span class="google-star-row" aria-label="Reviews on Google">Google reviews</span> — Twin Rivers Fence</a>
         <span>Verified Google Business Profile</span>
         <span>Licensed &amp; Insured — #${site.license}</span>
         <span>Residential &amp; Commercial</span>
@@ -198,9 +198,9 @@ export function renderHomePage() {
 </section>`;
 
   return renderLayout({
-    title: "Granite Bay Fence Company | Fence Contractor in Granite Bay, CA",
+    title: "Granite Bay Fence Company — Free Estimates | License #1089233",
     description:
-      "Granite Bay Fence Company — licensed fence contractor for installation, repair, wood, vinyl, iron, pool, ranch & HOA fencing in Granite Bay, California. Twin Rivers Fence. Call (916) 906-2254.",
+      "Licensed Granite Bay fence contractor for installation, repair, wood, vinyl, pool & HOA fencing. Twin Rivers Fence. Call (916) 906-2254.",
     path: "/",
     body,
     schemas: [faqSchema(homeFaqs)],

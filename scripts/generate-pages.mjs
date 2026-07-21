@@ -5,6 +5,7 @@ import { servicesPages } from "./pages-data/services.mjs";
 import { fenceTypePages } from "./pages-data/fence-types.mjs";
 import { gatePages } from "./pages-data/gates.mjs";
 import { deckPages } from "./pages-data/decks.mjs";
+import { patioPages } from "./pages-data/patios.mjs";
 import { serviceAreaPages } from "./pages-data/service-areas.mjs";
 import { resourcePages } from "./pages-data/resources.mjs";
 import { faqPage } from "./pages-data/faq.mjs";
@@ -17,6 +18,7 @@ const pages = [
   ...fenceTypePages,
   ...gatePages,
   ...deckPages,
+  ...patioPages,
   ...serviceAreaPages,
   ...resourcePages,
   faqPage,

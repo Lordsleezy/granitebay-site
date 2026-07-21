@@ -1,11 +1,21 @@
-import { site, nav, fenceNavItems, gateNavItems, deckNavItems, serviceNavItems, footerColumns } from "../data/site.js";
+import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, footerColumns } from "../data/site.js";
 
-const assetVersion = "20260721-nav2";
+const assetVersion = "20260721-nav3";
+
+const citySites = [
+  { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },
+  { label: "Rocklin", href: "https://rocklinfencing.com/" },
+  { label: "Roseville", href: "https://rosevillefencingca.com/" },
+  { label: "Folsom", href: "https://folsomfencing.com/" },
+  { label: "Elk Grove", href: "https://elkgrovefencing.com/" },
+  { label: "Granite Bay", href: "https://granitebayfencing.com/" },
+];
 
 const navMenus = {
   fencing: fenceNavItems,
   gates: gateNavItems,
   decks: deckNavItems,
+  patios: patioNavItems,
   services: serviceNavItems,
 };
 
@@ -13,6 +23,7 @@ const dropdownActivePrefixes = {
   fencing: ["/fence-types/", "-fencing/"],
   gates: ["/gates/", "/custom-gates/"],
   decks: ["/decks/"],
+  patios: ["/patios/"],
   services: ["/services/", "/fence-repair/", "/commercial-fencing/", "/temporary-fence-rental/"],
 };
 
@@ -152,10 +163,15 @@ function renderFooter() {
     </div>`
     )
     .join("");
+  const cityCol = `
+    <div class="footer-col">
+      <h3>City Sites</h3>
+      <ul>${citySites.map((c) => `<li><a href="${c.href}">${escapeHtml(c.label)}</a></li>`).join("")}</ul>
+    </div>`;
 
   return `
 <footer class="site-footer">
-  <div class="footer-grid">${cols}</div>
+  <div class="footer-grid">${cols}${cityCol}</div>
   <div class="footer-bottom">
     <div>${escapeHtml(site.name)} — License #${site.license} — ${escapeHtml(site.address.locality)}, ${site.address.region} — <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
     <div class="footer-legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/sitemap.xml">Sitemap</a></div>

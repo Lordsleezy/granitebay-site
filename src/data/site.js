@@ -36,62 +36,234 @@ export const site = {
 };
 
 export const fenceNavItems = [
-  { href: "/fence-types/", label: "All Fence Types" },
-  { href: "/wood-fencing/", label: "Wood Fencing" },
-  { href: "/vinyl-fencing/", label: "Vinyl Fencing" },
-  { href: "/metal-fencing/", label: "Metal Fencing" },
-  { href: "/chain-link-fencing/", label: "Chain Link Fencing" },
-  { href: "/temporary-fencing/", label: "Temporary Fencing" },
-  { href: "/fence-types/redwood-fence/", label: "Redwood Fence" },
-  { href: "/fence-types/cedar-fence/", label: "Cedar Fence" },
-  { href: "/fence-types/privacy-fence/", label: "Privacy Fence" },
-  { href: "/fence-types/horizontal-fence/", label: "Horizontal Fence" },
-  { href: "/fence-types/pool-fence/", label: "Pool Fence" },
-  { href: "/fence-types/ornamental-iron-fence/", label: "Ornamental Iron" },
-  { href: "/fence-types/aluminum-fence/", label: "Aluminum Fence" },
-  { href: "/fence-types/security-fence/", label: "Security Fence" },
-  { href: "/fence-types/dog-fence/", label: "Dog Fence" },
-  { href: "/fence-types/hoa-fence/", label: "HOA Fence" },
-  { href: "/fence-types/ranch-fence/", label: "Ranch Fence" },
-  { href: "/fence-types/agricultural-fence/", label: "Agricultural Fence" },
+  {
+    "href": "/fence-types/",
+    "label": "All Fence Types"
+  },
+  {
+    "href": "/wood-fencing/",
+    "label": "Wood Fencing"
+  },
+  {
+    "href": "/vinyl-fencing/",
+    "label": "Vinyl Fencing"
+  },
+  {
+    "href": "/metal-fencing/",
+    "label": "Metal Fencing"
+  },
+  {
+    "href": "/chain-link-fencing/",
+    "label": "Chain Link Fencing"
+  },
+  {
+    "href": "/temporary-fencing/",
+    "label": "Temporary Fencing"
+  },
+  {
+    "href": "/fence-types/redwood-fence/",
+    "label": "Redwood Fence"
+  },
+  {
+    "href": "/fence-types/cedar-fence/",
+    "label": "Cedar Fence"
+  },
+  {
+    "href": "/fence-types/privacy-fence/",
+    "label": "Privacy Fence"
+  },
+  {
+    "href": "/fence-types/horizontal-fence/",
+    "label": "Horizontal Fence"
+  },
+  {
+    "href": "/fence-types/pool-fence/",
+    "label": "Pool Fence"
+  },
+  {
+    "href": "/fence-types/ornamental-iron-fence/",
+    "label": "Ornamental Iron"
+  },
+  {
+    "href": "/fence-types/aluminum-fence/",
+    "label": "Aluminum Fence"
+  },
+  {
+    "href": "/fence-types/security-fence/",
+    "label": "Security Fence"
+  },
+  {
+    "href": "/fence-types/dog-fence/",
+    "label": "Dog Fence"
+  },
+  {
+    "href": "/fence-types/hoa-fence/",
+    "label": "HOA Fence"
+  },
+  {
+    "href": "/fence-types/ranch-fence/",
+    "label": "Ranch Fence"
+  },
+  {
+    "href": "/fence-types/agricultural-fence/",
+    "label": "Agricultural Fence"
+  }
 ];
 
 export const gateNavItems = [
-  { href: "/gates/", label: "All Gates" },
-  { href: "/custom-gates/", label: "Custom Gates" },
-  { href: "/gates/driveway-gates/", label: "Driveway Gates" },
-  { href: "/gates/automatic-gates/", label: "Automatic Gates" },
-  { href: "/gates/wood-gates/", label: "Wood Gates" },
-  { href: "/gates/iron-gates/", label: "Iron Gates" },
-  { href: "/gates/gate-repair/", label: "Gate Repair" },
+  {
+    "href": "/gates/",
+    "label": "All Gates"
+  },
+  {
+    "href": "/custom-gates/",
+    "label": "Custom Gates"
+  },
+  {
+    "href": "/gates/driveway-gates/",
+    "label": "Driveway Gates"
+  },
+  {
+    "href": "/gates/automatic-gates/",
+    "label": "Automatic Gates"
+  },
+  {
+    "href": "/gates/wood-gates/",
+    "label": "Wood Gates"
+  },
+  {
+    "href": "/gates/iron-gates/",
+    "label": "Iron Gates"
+  },
+  {
+    "href": "/gates/gate-repair/",
+    "label": "Gate Repair"
+  }
 ];
 
 export const deckNavItems = [
-  { href: "/decks/", label: "All Decks" },
-  { href: "/decks/wood-deck/", label: "Wood Decks" },
-  { href: "/decks/composite-deck/", label: "Composite Decks" },
-  { href: "/decks/redwood-deck/", label: "Redwood Decks" },
-  { href: "/decks/deck-railing/", label: "Deck Railing" },
-  { href: "/decks/pergola/", label: "Pergolas" },
-  { href: "/decks/deck-repair/", label: "Deck Repair" },
+  {
+    "href": "/decks/",
+    "label": "All Decks"
+  },
+  {
+    "href": "/decks/wood-deck/",
+    "label": "Wood Decks"
+  },
+  {
+    "href": "/decks/composite-deck/",
+    "label": "Composite Decks"
+  },
+  {
+    "href": "/decks/redwood-deck/",
+    "label": "Redwood Decks"
+  },
+  {
+    "href": "/decks/deck-railing/",
+    "label": "Deck Railing"
+  },
+  {
+    "href": "/decks/pergola/",
+    "label": "Pergolas"
+  },
+  {
+    "href": "/decks/deck-repair/",
+    "label": "Deck Repair"
+  }
+];
+
+export const patioNavItems = [
+  {
+    "href": "/patios/",
+    "label": "All Patios"
+  },
+  {
+    "href": "/patios/concrete-patio/",
+    "label": "Concrete Patios"
+  },
+  {
+    "href": "/patios/paver-patio/",
+    "label": "Paver Patios"
+  },
+  {
+    "href": "/patios/stamped-concrete-patio/",
+    "label": "Stamped Concrete"
+  },
+  {
+    "href": "/patios/stone-patio/",
+    "label": "Stone Patios"
+  },
+  {
+    "href": "/patios/patio-cover/",
+    "label": "Patio Covers"
+  },
+  {
+    "href": "/patios/patio-repair/",
+    "label": "Patio Repair"
+  }
 ];
 
 export const serviceNavItems = [
-  { href: "/services/", label: "All Services" },
-  { href: "/services/fence-installation/", label: "Fence Installation" },
-  { href: "/fence-repair/", label: "Fence Repair" },
-  { href: "/services/fence-replacement/", label: "Fence Replacement" },
-  { href: "/services/emergency-fence-repair/", label: "Emergency Fence Repair" },
-  { href: "/services/storm-damage-fence-repair/", label: "Storm Damage Repair" },
-  { href: "/services/fence-staining/", label: "Fence Staining" },
-  { href: "/services/fence-maintenance/", label: "Fence Maintenance" },
-  { href: "/services/residential-fencing/", label: "Residential Fencing" },
-  { href: "/commercial-fencing/", label: "Commercial Fencing" },
-  { href: "/temporary-fence-rental/", label: "Temporary Fence Rental" },
-  { href: "/services/fence-removal/", label: "Fence Removal" },
-  { href: "/services/fence-inspections/", label: "Fence Inspections" },
-  { href: "/services/fence-consultation/", label: "Fence Consultation" },
-  { href: "/services/hoa-fence-installation/", label: "HOA Fence Installation" },
+  {
+    "href": "/services/",
+    "label": "All Services"
+  },
+  {
+    "href": "/services/fence-installation/",
+    "label": "Fence Installation"
+  },
+  {
+    "href": "/fence-repair/",
+    "label": "Fence Repair"
+  },
+  {
+    "href": "/services/fence-replacement/",
+    "label": "Fence Replacement"
+  },
+  {
+    "href": "/services/emergency-fence-repair/",
+    "label": "Emergency Fence Repair"
+  },
+  {
+    "href": "/services/fence-staining/",
+    "label": "Fence Staining"
+  },
+  {
+    "href": "/services/fence-maintenance/",
+    "label": "Fence Maintenance"
+  },
+  {
+    "href": "/services/residential-fencing/",
+    "label": "Residential Fencing"
+  },
+  {
+    "href": "/commercial-fencing/",
+    "label": "Commercial Fencing"
+  },
+  {
+    "href": "/temporary-fence-rental/",
+    "label": "Temporary Fence Rental"
+  },
+  {
+    "href": "/services/fence-removal/",
+    "label": "Fence Removal"
+  },
+  {
+    "href": "/services/storm-damage-fence-repair/",
+    "label": "Storm Damage Fence Repair"
+  },
+  {
+    "href": "/services/fence-inspections/",
+    "label": "Fence Inspections"
+  },
+  {
+    "href": "/services/fence-consultation/",
+    "label": "Fence Consultation"
+  },
+  {
+    "href": "/services/hoa-fence-installation/",
+    "label": "HOA Fence Installation"
+  }
 ];
 
 export const nav = [
@@ -99,6 +271,7 @@ export const nav = [
   { href: "/fence-types/", label: "Fencing", dropdown: "fencing" },
   { href: "/gates/", label: "Gates", dropdown: "gates" },
   { href: "/decks/", label: "Decks", dropdown: "decks" },
+  { href: "/patios/", label: "Patios", dropdown: "patios" },
   { href: "/commercial-fencing/", label: "Commercial" },
   { href: "/service-areas/", label: "Areas" },
   { href: "/resources/", label: "Resources" },

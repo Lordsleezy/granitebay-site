@@ -1,4 +1,4 @@
-import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, footerColumns } from "../data/site.js";
+import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, areasNavItems, footerColumns } from "../data/site.js";
 
 const assetVersion = "20260721-seo1";
 
@@ -17,6 +17,7 @@ const navMenus = {
   decks: deckNavItems,
   patios: patioNavItems,
   services: serviceNavItems,
+  areas: areasNavItems,
 };
 
 const dropdownActivePrefixes = {
@@ -25,6 +26,7 @@ const dropdownActivePrefixes = {
   decks: ["/decks/"],
   patios: ["/patios/"],
   services: ["/services/", "/fence-repair/", "/commercial-fencing/", "/temporary-fence-rental/"],
+  areas: ["/service-areas/"],
 };
 
 function isDropdownActive(dropdownKey, currentPath, itemHref, children) {
@@ -173,8 +175,8 @@ function renderFooter() {
 <footer class="site-footer">
   <div class="footer-grid">${cols}${cityCol}</div>
   <div class="footer-bottom">
-    <div>${escapeHtml(site.name)} — License #${site.license} — ${escapeHtml(site.address.locality)}, ${site.address.region} — <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
-    <div class="footer-legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/sitemap.xml">Sitemap</a></div>
+    <div>${escapeHtml(site.name)} ? License #${site.license} ? ${escapeHtml(site.address.locality)}, ${site.address.region} ? <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
+    <div class="footer-legal"><a href="/privacy/">Privacy</a> ? <a href="/terms/">Terms</a> ? <a href="/sitemap.xml">Sitemap</a></div>
   </div>
 </footer>`;
 }
@@ -224,7 +226,7 @@ export function renderLayout({
 <meta property="og:url" content="${url}">
 <meta property="og:site_name" content="${escapeHtml(site.localName)}">
 <meta property="og:image" content="${site.ogImage}">
-<meta property="og:image:alt" content="${escapeHtml(site.name)} — ${escapeHtml(site.address.locality)} fence contractors">
+<meta property="og:image:alt" content="${escapeHtml(site.name)} ? ${escapeHtml(site.address.locality)} fence contractors">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeHtml(title)}">
@@ -264,7 +266,7 @@ ${body}
 </main>
 ${renderFooter()}
 <div class="sticky-call-bar" aria-label="Call for a free estimate">
-  <a href="tel:${site.phoneTel}">Call ${site.phoneDisplay} � Free Estimate</a>
+  <a href="tel:${site.phoneTel}">Call ${site.phoneDisplay} ? Free Estimate</a>
 </div>
 ${
   includeHeroCanvas

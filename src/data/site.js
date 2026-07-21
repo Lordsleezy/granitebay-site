@@ -1,4 +1,4 @@
-/** Shared business & site configuration for Granite Bay / Twin Rivers Fence */
+﻿/** Shared business & site configuration for Granite Bay / Twin Rivers Fence */
 export const site = {
   name: "Twin Rivers Fence",
   localName: "Granite Bay Fence Company",
@@ -266,6 +266,17 @@ export const serviceNavItems = [
   }
 ];
 
+export const areasNavItems = [
+  { href: "/service-areas/", label: "All Areas" },
+  { href: "/service-areas/granite-bay/", label: "Granite Bay" },
+  { href: "/service-areas/rocklin/", label: "Rocklin" },
+  { href: "/service-areas/roseville/", label: "Roseville" },
+  { href: "/service-areas/loomis/", label: "Loomis" },
+  { href: "/service-areas/lincoln/", label: "Lincoln" },
+  { href: "/service-areas/folsom/", label: "Folsom" },
+  { href: "/service-areas/el-dorado-hills/", label: "El Dorado Hills" },
+];
+
 export const nav = [
   { href: "/services/", label: "Services", dropdown: "services" },
   { href: "/fence-types/", label: "Fencing", dropdown: "fencing" },
@@ -273,7 +284,7 @@ export const nav = [
   { href: "/decks/", label: "Decks", dropdown: "decks" },
   { href: "/patios/", label: "Patios", dropdown: "patios" },
   { href: "/commercial-fencing/", label: "Commercial" },
-  { href: "/service-areas/", label: "Areas" },
+  { href: "/service-areas/", label: "Areas", dropdown: "areas" },
   { href: "/resources/", label: "Resources" },
   { href: "/calculators/", label: "Tools" },
   { href: "/#contact", label: "Quote" },

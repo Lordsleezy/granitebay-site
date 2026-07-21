@@ -24,7 +24,7 @@
   }
 
   function starMarkup(rating) {
-    if (rating == null) return "★★★★★";
+    if (rating == null) return "";
     var score = Math.round(Number(rating) || 0);
     var stars = "";
     for (var i = 1; i <= 5; i += 1) {

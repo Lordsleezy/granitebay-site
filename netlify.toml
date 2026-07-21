@@ -1,0 +1,200 @@
+[build]
+  command = "node build.mjs"
+  publish = "dist"
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy/"
+  status = 301
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms/"
+  status = 301
+
+[[redirects]]
+  from = "/success.html"
+  to = "/success/"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/resources/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/"
+  to = "/resources/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-cost-granite-bay"
+  to = "/resources/fence-cost-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-cost-granite-bay/"
+  to = "/resources/fence-cost-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/best-fence-types-granite-bay"
+  to = "/fence-types/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/best-fence-types-granite-bay/"
+  to = "/fence-types/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-permit-granite-bay"
+  to = "/resources/fence-permit-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-permit-granite-bay/"
+  to = "/resources/fence-permit-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-cost-roseville"
+  to = "/resources/fence-cost-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-cost-roseville/"
+  to = "/resources/fence-cost-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/best-fence-types-roseville"
+  to = "/fence-types/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/best-fence-types-roseville/"
+  to = "/fence-types/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-permit-roseville"
+  to = "/resources/fence-permit-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/fence-permit-roseville/"
+  to = "/resources/fence-permit-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/locations"
+  to = "/service-areas/"
+  status = 301
+
+[[redirects]]
+  from = "/locations/"
+  to = "/service-areas/"
+  status = 301
+
+[[redirects]]
+  from = "/locations/granite-bay"
+  to = "/service-areas/granite-bay/"
+  status = 301
+
+[[redirects]]
+  from = "/locations/granite-bay/"
+  to = "/service-areas/granite-bay/"
+  status = 301
+
+[[redirects]]
+  from = "/locations/roseville"
+  to = "/service-areas/roseville/"
+  status = 301
+
+[[redirects]]
+  from = "/locations/roseville/"
+  to = "/service-areas/roseville/"
+  status = 301
+
+[[redirects]]
+  from = "/services/wood-fence"
+  to = "/wood-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/services/wood-fence/"
+  to = "/wood-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/services/vinyl-fence"
+  to = "/vinyl-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/services/vinyl-fence/"
+  to = "/vinyl-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/services/chain-link"
+  to = "/chain-link-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/services/chain-link/"
+  to = "/chain-link-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/services/fence-repair"
+  to = "/fence-repair/"
+  status = 301
+
+[[redirects]]
+  from = "/services/fence-repair/"
+  to = "/fence-repair/"
+  status = 301
+
+[[redirects]]
+  from = "/services/gate-installation"
+  to = "/custom-gates/"
+  status = 301
+
+[[redirects]]
+  from = "/services/gate-installation/"
+  to = "/custom-gates/"
+  status = 301
+
+[[redirects]]
+  from = "/services/temporary-fence"
+  to = "/temporary-fence-rental/"
+  status = 301
+
+[[redirects]]
+  from = "/services/temporary-fence/"
+  to = "/temporary-fence-rental/"
+  status = 301
+
+[[redirects]]
+  from = "/commercial-fencing.html"
+  to = "/commercial-fencing/"
+  status = 301
+
+[[redirects]]
+  from = "/custom-gates.html"
+  to = "/custom-gates/"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

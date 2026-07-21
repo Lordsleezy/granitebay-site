@@ -1,4 +1,4 @@
-import { site } from "../data/site.js";
+﻿import { site } from "../data/site.js";
 import { escapeHtml, faqSchema, renderLayout } from "./layout.js";
 
 const homeFaqs = [
@@ -45,7 +45,7 @@ export function renderHomePage() {
   <section class="dark-section who">
     <div class="who-grid">
       <div class="who-copy"><h2>A fence contractor that understands Granite Bay properties.</h2><p>Twin Rivers Fence is a licensed contractor (#${site.license}) serving Granite Bay, California with fence installation, repair, custom gates, and commercial fencing — backed by real experience with Placer County HOAs, large-lot layouts, and hillside retaining-wall integrations.</p><p class="license">Licensed Contractor #${site.license} — Granite Bay, California</p></div>
-      <div class="stats" aria-label="Twin Rivers Fence trust signals"><div class="stat-card"><div class="stat-number">✓</div><div class="stat-label">Licensed &amp; insured</div></div><div class="stat-card"><div class="stat-number">✓</div><div class="stat-label">HOA-approval experience</div></div><div class="stat-card"><div class="stat-number">★★★★★</div><div class="stat-label"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer">Google Business Profile</a></div></div></div>
+      <div class="stats" aria-label="Twin Rivers Fence trust signals"><div class="stat-card"><div class="stat-number">✓</div><div class="stat-label">Licensed &amp; insured</div></div><div class="stat-card"><div class="stat-number">✓</div><div class="stat-label">HOA-approval experience</div></div><div class="stat-card"><div class="stat-number">G</div><div class="stat-label"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer">Google Business Profile</a></div></div></div>
     </div>
   </section>
 

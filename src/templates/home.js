@@ -25,7 +25,7 @@ export function renderHomePage() {
     <div class="hero-inner">
       <p class="eyebrow">Granite Bay, California · Licensed #${site.license}</p>
       <h1>Granite Bay Fence Company</h1>
-      <p class="sub">Fence contractor in Granite Bay — luxury estate fencing, HOA-approved designs, pool barriers, ranch lines, and custom gates for Placer County's premier residential community</p>
+      <p class="sub">Granite Bay Fence Company for estate fencing, HOA-approved designs, pool barriers, ranch lines, and custom gates</p>
       <a href="#contact" class="btn-gold">Get a Free Estimate</a>
       <div class="google-trust-bar" aria-label="Twin Rivers Fence Google review summary">
         <a class="google-review-link" href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer"><span class="google-star-row" aria-label="Reviews on Google">Google reviews</span> — Twin Rivers Fence</a>
@@ -104,10 +104,10 @@ export function renderHomePage() {
   </section>
 
   <section class="dark-section alt areas"><h2>Granite Bay neighborhoods we serve</h2><p class="sub-text">Local expertise — not generic city swaps</p><div class="tag-cloud" aria-label="Granite Bay neighborhoods">
-    <a class="city-tag" href="/service-areas/granite-bay/">Granite Bay</a>
-    <a class="city-tag" href="/service-areas/granite-bay/">Hidden Lakes</a>
-    <a class="city-tag" href="/service-areas/granite-bay/">Los Lagos</a>
-    <a class="city-tag" href="/service-areas/granite-bay/">Treelake Village</a>
+    <a class="city-tag" href="/">Granite Bay</a>
+    <a class="city-tag" href="/">Hidden Lakes</a>
+    <a class="city-tag" href="/">Los Lagos</a>
+    <a class="city-tag" href="/">Treelake Village</a>
     <a class="city-tag" href="/service-areas/folsom/">Folsom</a>
     <a class="city-tag" href="/service-areas/roseville/">Roseville</a>
     <a class="city-tag" href="/service-areas/loomis/">Loomis</a>
@@ -198,9 +198,9 @@ export function renderHomePage() {
 </section>`;
 
   return renderLayout({
-    title: "Granite Bay Fence Company — Free Estimates | License #1089233",
+    title: "Granite Bay Fence Company | Free Estimates | License #1089233",
     description:
-      "Licensed Granite Bay fence contractor for installation, repair, wood, vinyl, pool & HOA fencing. Twin Rivers Fence. Call (916) 906-2254.",
+      "Granite Bay Fence Company for estate, HOA, pool, wood, vinyl, iron, repair, and custom gate fencing. Call (916) 906-2254.",
     path: "/",
     body,
     schemas: [faqSchema(homeFaqs)],

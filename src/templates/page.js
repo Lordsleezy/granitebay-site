@@ -155,8 +155,10 @@ export function renderContentPage(page, options = {}) {
       ? `<section class="dark-section alt content-block"><div class="prose"><h2>Assumptions &amp; notes</h2>${bullets(options.assumptions)}</div></section>`
       : "";
 
+  const seoPage = page.type === "location" ? { ...page, title: page.title.replace(/ Fence (Company|Contractor)/g, " Fence Service Area"), h1: page.h1.replace(/ Fence (Company|Contractor)/g, " Fence Service Area") } : page;
+
   const body = `
-${pageHero(page, crumbs)}
+${pageHero(seoPage, crumbs)}
 ${contentSections(page.sections)}
 ${howItWorks}
 ${calculatorMarkup}
@@ -174,7 +176,7 @@ ${contactSection(page.ctaNote)}
   ];
 
   return renderLayout({
-    title: page.title,
+    title: seoPage.title,
     description: page.description,
     path: page.path,
     body,

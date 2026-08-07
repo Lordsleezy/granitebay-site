@@ -115,10 +115,12 @@ function main() {
   fs.mkdirSync(dist, { recursive: true });
 
   const urls = [];
+  const redirectedToHome = new Set(["/service-areas/granite-bay/"]);
 
   urls.push(writePage("/", renderHomePage()));
 
   for (const page of pages) {
+    if (redirectedToHome.has(page.path)) continue;
     urls.push(writePage(page.path, renderContentPage(page)));
   }
 

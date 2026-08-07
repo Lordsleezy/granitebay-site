@@ -32,7 +32,7 @@ export const site = {
     "https://twinriversfence.com/",
   ],
   ogImage: "https://granitebayfencing.com/favicon-512x512.png",
-  themeColor: "#0a0a0a",
+  themeColor: "#fffaf2",
 };
 
 export const fenceNavItems = [
@@ -268,7 +268,7 @@ export const serviceNavItems = [
 
 export const areasNavItems = [
   { href: "/service-areas/", label: "All Areas" },
-  { href: "/service-areas/granite-bay/", label: "Granite Bay" },
+  { href: "/", label: "Granite Bay" },
   { href: "/service-areas/rocklin/", label: "Rocklin" },
   { href: "/service-areas/roseville/", label: "Roseville" },
   { href: "/service-areas/loomis/", label: "Loomis" },
@@ -316,7 +316,7 @@ export const footerColumns = [
   {
     title: "Granite Bay Area",
     links: [
-      { href: "/service-areas/granite-bay/", label: "Granite Bay" },
+      { href: "/", label: "Granite Bay" },
       { href: "/fence-types/hoa-fence/", label: "HOA Fencing" },
       { href: "/fence-types/pool-fence/", label: "Pool Fence" },
       { href: "/gates/driveway-gates/", label: "Driveway Gates" },

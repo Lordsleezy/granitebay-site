@@ -3,7 +3,7 @@ export const pages = [
   {
     "path": "/services/",
     "type": "hub",
-    "title": "Fence Services in Granite Bay, CA | Granite Bay Fence Company",
+    "title": "Fence Services in Granite Bay, CA",
     "description": "Fence services in Granite Bay: installation, repair, replacement, HOA fencing, and commercial perimeter work. Twin Rivers Fence, licensed #1089233, Placer County.",
     "h1": "Fence Services for Granite Bay Estates & HOAs",
     "eyebrow": "Licensed #1089233",
@@ -72,7 +72,7 @@ export const pages = [
         "label": "Cost Calculator"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay Service Area"
       }
     ],
@@ -81,7 +81,7 @@ export const pages = [
   {
     "path": "/services/fence-installation/",
     "type": "service",
-    "title": "Fence Installation Granite Bay, CA | Granite Bay Fence Company",
+    "title": "Fence Installation Granite Bay, CA",
     "description": "Professional fence installation in Granite Bay. Wood, vinyl, iron, and horse fencing for estate lots, slopes, and HOA communities. Licensed #1089233. Free estimates.",
     "h1": "Fence Installation for Granite Bay Properties",
     "eyebrow": "New fence projects",
@@ -151,7 +151,7 @@ export const pages = [
         "label": "Material Calculator"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ],
@@ -160,7 +160,7 @@ export const pages = [
   {
     "path": "/fence-repair/",
     "type": "service",
-    "title": "Fence Repair Granite Bay, CA | Granite Bay Fence Company",
+    "title": "Fence Repair Granite Bay, CA",
     "description": "Fence repair in Granite Bay: leaning posts on slopes, storm damage, rot, and gate failures. Licensed #1089233. We repair fences we did not install.",
     "h1": "Fence Repair for Granite Bay Homes & Estates",
     "eyebrow": "Repair & restore",
@@ -229,7 +229,7 @@ export const pages = [
         "label": "Maintenance Guide"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ],
@@ -444,7 +444,7 @@ export const pages = [
         "label": "Pool Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ],
@@ -518,7 +518,7 @@ export const pages = [
         "label": "Fence Maintenance"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ],
@@ -867,7 +867,7 @@ export const pages = [
         "label": "Ranch Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -939,7 +939,7 @@ export const pages = [
         "label": "Ornamental Iron"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ]
@@ -1078,7 +1078,7 @@ export const pages = [
         "label": "Cost Calculator"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ]
@@ -1938,7 +1938,7 @@ export const pages = [
         "label": "Privacy Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -2005,7 +2005,7 @@ export const pages = [
         "label": "Driveway Gates"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ]
@@ -2058,7 +2058,7 @@ export const pages = [
         "label": "Chain Link"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -3160,7 +3160,7 @@ export const pages = [
     ],
     "related": [
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -3188,9 +3188,9 @@ export const pages = [
   {
     "path": "/service-areas/granite-bay/",
     "type": "location",
-    "title": "Granite Bay Fence Company | Estate & Lake-Area Fencing",
+    "title": "Granite Bay Fence Service Area | Estate & Lake-Area Fencing",
     "description": "Granite Bay fence contractor for luxury estates, HOA communities, and Folsom Lake-adjacent properties. Hidden Lakes, Los Lagos, slope fencing, fire hardening. License #1089233.",
-    "h1": "Granite Bay Fence Company",
+    "h1": "Granite Bay Fence Service Area",
     "eyebrow": "Granite Bay, CA",
     "intro": "Granite Bay is one of Placer County's most distinctive fence markets — custom homes on half-acre to multi-acre lots, strict HOA architectural review in communities like Hidden Lakes and Los Lagos, and a Folsom Lake-adjacent climate that pushes homeowners toward view-preserving iron on one side of the property and solid privacy on the other. Granite Bay Fence Company knows the terrain from Douglas Boulevard to Auburn Folsom Road, the slope challenges near Treelake Village, and the permitting path through Placer County Building Services.",
     "sections": [
@@ -3349,7 +3349,7 @@ export const pages = [
         "label": "Pool Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -3423,7 +3423,7 @@ export const pages = [
         "label": "HOA Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -3490,7 +3490,7 @@ export const pages = [
         "label": "Property Line Guide"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ],
@@ -3559,7 +3559,7 @@ export const pages = [
         "label": "Pool Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -3626,7 +3626,7 @@ export const pages = [
         "label": "HOA Installation"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ],
@@ -3691,7 +3691,7 @@ export const pages = [
         "label": "HOA Fence"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       },
       {
@@ -4350,7 +4350,7 @@ export const pages = [
         "label": "Consultation"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ]
@@ -4407,7 +4407,7 @@ export const pages = [
         "label": "HOA Installation Service"
       },
       {
-        "href": "/service-areas/granite-bay/",
+        "href": "/",
         "label": "Granite Bay"
       }
     ]

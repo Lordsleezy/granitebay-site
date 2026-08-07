@@ -192,6 +192,16 @@
   to = "/custom-gates/"
   status = 301
 
+[[redirects]]
+  from = "/service-areas/granite-bay/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/service-areas/granite-bay"
+  to = "/"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]

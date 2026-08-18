@@ -189,8 +189,10 @@ export function renderHomePage() {
       <div class="contact-detail"><span>Phone</span> <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
       <p class="small">Granite Bay, California — Serving Folsom, Roseville, Loomis, Rocklin, Lincoln &amp; El Dorado Hills</p>
     </div>
-    <form name="contact" id="contact-form" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field">
+    <form name="contact" id="contact-form" method="POST" action="/.netlify/functions/contact-lead" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact">
+      <input type="hidden" name="city" value="${site.address.locality}">
+      <input type="hidden" name="source" value="${site.domain.replace(/^https?:\/\//, "")}">
       <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
       <input type="text" name="name" placeholder="Your name" required autocomplete="name">
       <input type="tel" name="phone" placeholder="Phone number" required autocomplete="tel">

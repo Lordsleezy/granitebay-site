@@ -755,53 +755,45 @@
       return;
     }
 
-    gsap.fromTo(".hero-inner > *", { opacity: 0, y: 24 }, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out" });
-    gsap.to(".scroll-line", { height: 50, duration: 0.9, ease: "power2.out", delay: 0.3 });
+    var isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+    var slide = isMobile ? 16 : 32;
+    var rise = isMobile ? 12 : 20;
 
-    gsap.utils.toArray("main > section:not(#hero)").forEach(function (section) {
-      gsap.fromTo(section, { autoAlpha: 0, y: 28 }, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 90%",
-          toggleActions: "play none none none",
-          once: true
-        }
-      });
-    });
+    gsap.fromTo(".hero-inner > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out", onComplete: function () { gsap.set(".hero-inner > *", { clearProps: "willChange" }); } });
+    gsap.to(".scroll-line", { height: 50, duration: 0.8, ease: "power2.out", delay: 0.25 });
 
     gsap.utils.toArray(".services-grid, .hub-grid, .faq-list, .stats, .legacy-stats").forEach(function (wrap) {
       if (!wrap.children.length) return;
-      gsap.fromTo(wrap.children, { autoAlpha: 0, y: 22 }, {
+      gsap.fromTo(wrap.children, { autoAlpha: 0, y: rise }, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.5,
-        stagger: 0.07,
+        duration: 0.45,
+        stagger: isMobile ? 0.04 : 0.07,
         ease: "power2.out",
-        scrollTrigger: { trigger: wrap, start: "top 86%", once: true }
+        scrollTrigger: { trigger: wrap, start: "top 88%", once: true },
+        onComplete: function () { gsap.set(wrap.children, { clearProps: "willChange" }); }
       });
     });
 
     gsap.utils.toArray(".photo-content.left").forEach(function (el) {
-      gsap.fromTo(el, { autoAlpha: 0, x: -36 }, {
+      gsap.fromTo(el, { autoAlpha: 0, x: -slide }, {
         autoAlpha: 1,
         x: 0,
-        duration: 0.6,
+        duration: 0.55,
         ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 86%", once: true }
+        scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        onComplete: function () { gsap.set(el, { clearProps: "willChange" }); }
       });
     });
 
     gsap.utils.toArray(".photo-content.right").forEach(function (el) {
-      gsap.fromTo(el, { autoAlpha: 0, x: 36 }, {
+      gsap.fromTo(el, { autoAlpha: 0, x: slide }, {
         autoAlpha: 1,
         x: 0,
-        duration: 0.6,
+        duration: 0.55,
         ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 86%", once: true }
+        scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        onComplete: function () { gsap.set(el, { clearProps: "willChange" }); }
       });
     });
   }
@@ -811,7 +803,7 @@
     if (reduce) return;
     if (window.gsap && window.ScrollTrigger) return;
     document.documentElement.classList.add("js-reveal");
-    var nodes = document.querySelectorAll("main > section:not(#hero), .service-card, .hub-card, .faq-item, .stat-card, .photo-content, .panorama-title");
+    var nodes = document.querySelectorAll(".service-card, .hub-card, .faq-item, .stat-card, .photo-content, .panorama-title, .legacy-copy, .legacy-values");
     if (!nodes.length) return;
     nodes.forEach(function (el) {
       el.classList.add("reveal");
@@ -831,6 +823,64 @@
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     nodes.forEach(function (el) { io.observe(el); });
+  }
+
+
+  function initContactForms() {
+    var forms = Array.prototype.slice.call(document.querySelectorAll("form[name='contact']"));
+    forms.forEach(function (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (form.dataset.submitting === "true") return;
+        if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+        var button = form.querySelector("button[type='submit']");
+        var status = form.querySelector(".success-message");
+        var phoneNode = document.querySelector(".contact-detail a");
+        var phone = phoneNode ? phoneNode.textContent : "(916) 906-2254";
+        form.dataset.submitting = "true";
+        if (button) button.disabled = true;
+        if (status) {
+          status.classList.remove("is-error");
+          status.textContent = "Sending\u2026";
+        }
+        var body = new URLSearchParams(new FormData(form)).toString();
+        function fail() {
+          delete form.dataset.submitting;
+          if (button) button.disabled = false;
+          if (status) {
+            status.classList.add("is-error");
+            status.textContent = "Something went wrong sending your request. Please call Twin Rivers Fence at " + phone + ".";
+          }
+        }
+        function succeed() {
+          form.reset();
+          delete form.dataset.submitting;
+          if (button) button.disabled = false;
+          if (status) {
+            status.classList.remove("is-error");
+            status.textContent = "Thanks \u2014 your request was sent to Twin Rivers Fence. We will follow up soon.";
+          }
+        }
+        fetch("/.netlify/functions/contact-lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" },
+          body: body
+        }).then(function (res) {
+          if (res.ok) {
+            succeed();
+            return;
+          }
+          return fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body
+          }).then(function (res2) {
+            if (res2.ok) succeed();
+            else fail();
+          });
+        }).catch(fail);
+      });
+    });
   }
 
   function initCounters() {
@@ -867,4 +917,5 @@
   initGsap();
   initReveals();
   initCounters();
+  initContactForms();
 }());

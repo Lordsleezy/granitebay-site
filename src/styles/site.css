@@ -168,8 +168,7 @@ h2 {
   overflow: hidden;
   display: flex;
   align-items: center;
-  isolation: isolate;
-  will-change: opacity, transform, filter;
+  isolation: isolate;
 }
 
 .photo-section.short {
@@ -235,8 +234,7 @@ h2 {
 
 .dark-section {
   background: #0d0d0d;
-  padding: 6rem 8vw;
-  will-change: opacity, transform, filter;
+  padding: 6rem 8vw;
 }
 
 .dark-section.alt {
@@ -1902,5 +1900,33 @@ h1,h2 { color:var(--ink); text-shadow:none; } .eyebrow,.sub-text,.small,.fine-pr
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* Light-section text + motion budget — 2026-08-18 QA */
+.legacy-copy .sub-text,
+.commercial-intro .sub-text,
+.professional-intro .sub-text,
+.google-review-intro .sub-text,
+.google-review-local {
+  color: var(--soft);
+}
+.legacy-values,
+.legacy-stat strong,
+.google-review-pill {
+  color: var(--ink);
+}
+.photo-section,
+.dark-section {
+  will-change: auto;
+}
+.success-message.is-error {
+  color: #9b1c1c;
+}
+@media (max-width: 768px) {
+  .js-reveal .reveal,
+  .js-reveal .reveal.reveal-left,
+  .js-reveal .reveal.reveal-right {
+    transform: translate3d(0, 16px, 0);
   }
 }

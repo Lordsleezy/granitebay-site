@@ -20,7 +20,15 @@ export const calculatorPages = [
       "Expansive clay soil common here can increase footing depth and labor on some sites.",
       "Final quotes depend on a site visit, HOA requirements, and gate hardware selections.",
     ],
+    toolCards: [
+      { href: "/calculators/fence-quote/", label: "Fence Quote", blurb: "Get a preliminary Twin Rivers Fence estimate, then send your details for an exact follow-up." },
+      { href: "/calculators/fence-cost-calculator/", label: "Fence Cost Calculator", blurb: "Educational installed-cost ranges by material, gates, and terrain." },
+      { href: "/calculators/fence-material-calculator/", label: "Material Calculator", blurb: "Plan boards, posts, and rails before you request a quote." },
+      { href: "/calculators/post-calculator/", label: "Post Calculator", blurb: "Estimate how many posts a typical residential run needs." },
+      { href: "/calculators/concrete-calculator/", label: "Concrete Calculator", blurb: "Ballpark bags of concrete for post holes." },
+    ],
     related: [
+      { href: "/calculators/fence-quote/", label: "Fence Quote" },
       { href: "/calculators/fence-cost-calculator/", label: "Fence Cost Calculator" },
       { href: "/calculators/fence-material-calculator/", label: "Material Calculator" },
       { href: "/calculators/concrete-calculator/", label: "Concrete Calculator" },
@@ -46,6 +54,44 @@ export const calculatorPages = [
         question: "Which calculator should I start with?",
         answer:
           "Most homeowners begin with the perimeter estimator to learn total linear feet, then the cost calculator for budget planning. Material and concrete tools help if you are comparing a DIY supply list against professional installation.",
+      },
+    ],
+  },
+  {
+    path: "/calculators/fence-quote/",
+    title: "Fence Quote Calculator Granite Bay, CA | Twin Rivers Fence",
+    description:
+      "Get a preliminary fence quote for Granite Bay. Choose fence type, height, and footage, then send your details for an exact Twin Rivers Fence follow-up.",
+    h1: "Fence Quote Calculator",
+    eyebrow: "Free Tool",
+    intro:
+      "This is the Twin Rivers Fence quote calculator for Granite Bay homeowners. Enter fence type, height, linear footage, gates, and whether old fence needs removal to see a preliminary budget range, then send your phone number for an exact on-site quote.",
+    calculatorId: "fence-quote",
+    howItWorks: [
+      "Choose the fence type, height, and approximate linear footage for your Granite Bay property.",
+      "Add gates and existing-fence removal if they apply.",
+      "Review the preliminary range, then send your name and phone number so Twin Rivers Fence can follow up with an exact quote.",
+    ],
+    assumptions: [
+      "The range is a planning estimate only and is not a contract price.",
+      "Grade, access, HOA specs, and material availability in the Granite Bay area can change the final number.",
+      "A site visit is required before Twin Rivers Fence can confirm an exact quote.",
+    ],
+    related: [
+      { href: "/calculators/fence-cost-calculator/", label: "Cost Calculator" },
+      { href: "/calculators/", label: "All Tools" },
+      { href: "/#contact", label: "Request a Quote" },
+    ],
+    faqs: [
+      {
+        question: "Is this Fence Quote the same as a final bid?",
+        answer:
+          "No. It is a preliminary online estimate for budget planning. Twin Rivers Fence confirms an exact Granite Bay quote after reviewing the site.",
+      },
+      {
+        question: "Do I have to enter an email address?",
+        answer:
+          "Email is optional. A phone number is enough for follow-up.",
       },
     ],
   },

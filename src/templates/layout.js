@@ -1,6 +1,6 @@
-import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, areasNavItems, footerColumns } from "../data/site.js";
+import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, areasNavItems, toolsNavItems, footerColumns } from "../data/site.js";
 
-const assetVersion = "20260818-qa2";
+const assetVersion = "20260818-quote1";
 
 const citySites = [
   { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },
@@ -17,6 +17,7 @@ const navMenus = {
   decks: deckNavItems,
   patios: patioNavItems,
   services: serviceNavItems,
+  tools: toolsNavItems,
   areas: areasNavItems,
 };
 
@@ -26,6 +27,7 @@ const dropdownActivePrefixes = {
   decks: ["/decks/"],
   patios: ["/patios/"],
   services: ["/services/", "/fence-repair/", "/commercial-fencing/", "/temporary-fence-rental/"],
+  tools: ["/calculators/"],
   areas: ["/service-areas/"],
 };
 
@@ -209,6 +211,7 @@ export function renderLayout({
   schemas = [],
   includeHeroCanvas = false,
   includeCalculators = false,
+  includeQuoteTool = false,
   ogType = "website",
 }) {
   const url = canonical || `${site.domain}${path}`;
@@ -284,6 +287,8 @@ ${
 <script src="/assets/js/site.js?v=${assetVersion}" defer></script>
 <script src="/assets/js/google-reviews.js?v=${assetVersion}" defer></script>
 ${includeCalculators ? `<script src="/assets/js/calculators.js?v=${assetVersion}" defer></script>` : ""}
+${includeQuoteTool ? `<script src="/assets/js/fence-pricing.js?v=${assetVersion}" defer></script>
+<script src="/assets/js/quote-calculator.js?v=${assetVersion}" defer></script>` : ""}
 <script src="/assets/js/nav.js?v=${assetVersion}" defer></script>
 </body>
 </html>`;

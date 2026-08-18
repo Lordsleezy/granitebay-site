@@ -157,6 +157,8 @@ function main() {
   fs.copyFileSync(path.join(__dirname, "src/scripts/google-reviews.js"), path.join(dist, "assets/js/google-reviews.js"));
   fs.copyFileSync(path.join(__dirname, "src/scripts/calculators.js"), path.join(dist, "assets/js/calculators.js"));
   fs.copyFileSync(path.join(__dirname, "src/scripts/nav.js"), path.join(dist, "assets/js/nav.js"));
+  fs.copyFileSync(path.join(__dirname, "src/scripts/fence-pricing.js"), path.join(dist, "assets/js/fence-pricing.js"));
+  fs.copyFileSync(path.join(__dirname, "src/scripts/quote-calculator.js"), path.join(dist, "assets/js/quote-calculator.js"));
 
   if (fs.existsSync(path.join(__dirname, "public"))) {
     copyDir(path.join(__dirname, "public"), dist);

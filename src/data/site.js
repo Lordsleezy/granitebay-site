@@ -279,6 +279,15 @@ export const areasNavItems = [
   { href: "/service-areas/el-dorado-hills/", label: "El Dorado Hills" },
 ];
 
+export const toolsNavItems = [
+  { href: "/calculators/fence-quote/", label: "Fence Quote" },
+  { href: "/calculators/fence-cost-calculator/", label: "Cost Calculator" },
+  { href: "/calculators/fence-material-calculator/", label: "Material Calculator" },
+  { href: "/calculators/post-calculator/", label: "Post Calculator" },
+  { href: "/calculators/concrete-calculator/", label: "Concrete Calculator" },
+  { href: "/calculators/", label: "All Tools" },
+];
+
 export const nav = [
   { href: "/services/", label: "Services", dropdown: "services" },
   { href: "/fence-types/", label: "Fencing", dropdown: "fencing" },
@@ -288,7 +297,7 @@ export const nav = [
   { href: "/commercial-fencing/", label: "Commercial" },
   { href: "/service-areas/", label: "Areas", dropdown: "areas" },
   { href: "/resources/", label: "Resources" },
-  { href: "/calculators/", label: "Tools" },
+  { href: "/calculators/", label: "Tools", dropdown: "tools" },
   { href: "/#contact", label: "Quote" },
 ];
 

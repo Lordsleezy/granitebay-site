@@ -826,6 +826,30 @@
   }
 
 
+  function readUtms() {
+    var out = {};
+    try { Object.assign(out, JSON.parse(sessionStorage.getItem("tr_utm") || "{}")); } catch (error) {}
+    var params = new URLSearchParams(window.location.search);
+    ["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach(function (key) {
+      var value = params.get(key);
+      if (value) out[key] = value;
+    });
+    try { sessionStorage.setItem("tr_utm", JSON.stringify(out)); } catch (error) {}
+    return out;
+  }
+
+  function ensureHidden(form, name, value) {
+    var el = form.querySelector('[name="' + name + '"]');
+    if (!el) {
+      el = document.createElement("input");
+      el.type = "hidden";
+      el.name = name;
+      form.appendChild(el);
+    }
+    el.value = value;
+    return el;
+  }
+
   function initContactForms() {
     var forms = Array.prototype.slice.call(document.querySelectorAll("form[name='contact']"));
     forms.forEach(function (form) {
@@ -833,6 +857,14 @@
         event.preventDefault();
         if (form.dataset.submitting === "true") return;
         if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+        var utm = readUtms();
+        ensureHidden(form, "lead_id", (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("lead-" + Date.now()));
+        ensureHidden(form, "lead_type", "contact");
+        ensureHidden(form, "source_page", window.location.pathname);
+        ensureHidden(form, "referrer", document.referrer || "");
+        ["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach(function (key) {
+          if (utm[key]) ensureHidden(form, key, utm[key]);
+        });
         var button = form.querySelector("button[type='submit']");
         var status = form.querySelector(".success-message");
         var phoneNode = document.querySelector(".contact-detail a");

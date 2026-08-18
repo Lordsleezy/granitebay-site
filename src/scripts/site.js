@@ -751,7 +751,7 @@
     var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduceMotion) {
-      gsap.set("main > section", { clearProps: "all", autoAlpha: 1, y: 0, x: 0, scale: 1 });
+      gsap.set("main > section, .service-card, .hub-card, .faq-item, .photo-content, .panorama-title", { clearProps: "all", autoAlpha: 1, y: 0, x: 0, scale: 1 });
       return;
     }
 
@@ -759,10 +759,10 @@
     gsap.to(".scroll-line", { height: 50, duration: 0.9, ease: "power2.out", delay: 0.3 });
 
     gsap.utils.toArray("main > section:not(#hero)").forEach(function (section) {
-      gsap.fromTo(section, { autoAlpha: 0, y: 36 }, {
+      gsap.fromTo(section, { autoAlpha: 0, y: 28 }, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.65,
+        duration: 0.6,
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
@@ -772,6 +772,65 @@
         }
       });
     });
+
+    gsap.utils.toArray(".services-grid, .hub-grid, .faq-list, .stats, .legacy-stats").forEach(function (wrap) {
+      if (!wrap.children.length) return;
+      gsap.fromTo(wrap.children, { autoAlpha: 0, y: 22 }, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.07,
+        ease: "power2.out",
+        scrollTrigger: { trigger: wrap, start: "top 86%", once: true }
+      });
+    });
+
+    gsap.utils.toArray(".photo-content.left").forEach(function (el) {
+      gsap.fromTo(el, { autoAlpha: 0, x: -36 }, {
+        autoAlpha: 1,
+        x: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 86%", once: true }
+      });
+    });
+
+    gsap.utils.toArray(".photo-content.right").forEach(function (el) {
+      gsap.fromTo(el, { autoAlpha: 0, x: 36 }, {
+        autoAlpha: 1,
+        x: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 86%", once: true }
+      });
+    });
+  }
+
+  function initReveals() {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    if (window.gsap && window.ScrollTrigger) return;
+    document.documentElement.classList.add("js-reveal");
+    var nodes = document.querySelectorAll("main > section:not(#hero), .service-card, .hub-card, .faq-item, .stat-card, .photo-content, .panorama-title");
+    if (!nodes.length) return;
+    nodes.forEach(function (el) {
+      el.classList.add("reveal");
+      if (el.classList.contains("left")) el.classList.add("reveal-left");
+      if (el.classList.contains("right")) el.classList.add("reveal-right");
+    });
+    function show(el) { el.classList.add("is-visible"); }
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(show);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        show(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    nodes.forEach(function (el) { io.observe(el); });
   }
 
   function initCounters() {
@@ -806,5 +865,6 @@
 
   initHeroCanvas();
   initGsap();
+  initReveals();
   initCounters();
 }());

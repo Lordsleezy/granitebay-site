@@ -162,16 +162,17 @@
 }
 
 .faq-item {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(36, 50, 74, 0.14);
   border-radius: 4px;
   padding: 1rem 1.2rem;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--panel, #fff);
 }
 
 .faq-item summary {
   cursor: pointer;
-  color: #fff;
+  color: var(--ink, #fff);
   font-size: 1.05rem;
+  font-weight: 600;
   list-style: none;
 }
 

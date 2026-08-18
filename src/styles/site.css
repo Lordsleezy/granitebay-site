@@ -1845,3 +1845,62 @@ h1,h2 { color:var(--ink); text-shadow:none; } .eyebrow,.sub-text,.small,.fine-pr
 .photo-section::before { background:linear-gradient(to right,rgba(36,50,74,.56),rgba(36,50,74,.14) 60%,transparent); } .photo-section.overlay-right::before { background:linear-gradient(to left,rgba(36,50,74,.56),rgba(36,50,74,.14) 60%,transparent); } .photo-content h2,.photo-content p,.photo-content .section-tag { color:#fff; text-shadow:0 2px 16px rgba(36,50,74,.35); }
 .dark-section,.dark-section.alt,#contact { background:#fffaf2; } .dark-section.alt { background:#eef8f6; } .dark-section h2,.dark-section h3,.dark-section strong { color:var(--ink); } .dark-section p,.dark-section li { color:var(--soft); }
 .stat-card,.service-card,.hub-card,.commercial-card,.contact-panel,.river-chat,.river-mascot-card { background:rgba(255,255,255,.82); border-color:rgba(36,50,74,.12); box-shadow:0 12px 30px rgba(36,50,74,.07); } .legacy-section,.professional-section,.google-reviews-section { background:#eee7ff; } .expanded-area-tag,.city-tag { background:rgba(255,255,255,.5); border-color:rgba(22,184,166,.3); color:var(--ink); } form input,form textarea,form select { background:#fff; border-color:#cbd7e7; color:var(--ink); } .site-footer { background:#24324a; color:#fffaf2; } .site-footer a { color:#fffaf2; } .sticky-call-bar a { background:var(--gold); color:#fffaf2; } @media(max-width:900px){.site-nav{background:#fff;border-bottom-color:rgba(36,50,74,.1);}}
+
+/* Readability + motion — 2026-08-18 */
+.faq-item {
+  background: #fff;
+  border-color: rgba(36, 50, 74, 0.14);
+}
+.faq-item summary {
+  color: var(--ink);
+  font-weight: 600;
+}
+.faq-item p {
+  color: var(--soft);
+}
+.photo-section::before {
+  background: linear-gradient(to right, rgba(8, 14, 24, 0.82) 0%, rgba(8, 14, 24, 0.42) 52%, rgba(8, 14, 24, 0.18) 100%);
+}
+.photo-section.overlay-right::before {
+  background: linear-gradient(to left, rgba(8, 14, 24, 0.82) 0%, rgba(8, 14, 24, 0.42) 52%, rgba(8, 14, 24, 0.18) 100%);
+}
+.photo-section.overlay-soft::before {
+  background: linear-gradient(180deg, rgba(8, 14, 24, 0.38) 0%, rgba(8, 14, 24, 0.55) 42%, rgba(8, 14, 24, 0.78) 100%);
+}
+.photo-content h2,
+.photo-content p,
+.photo-content .section-tag,
+.panorama-title {
+  color: #fff !important;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+}
+.panorama-title {
+  font-weight: 400;
+  line-height: 1.12;
+}
+.hub-card h3,
+.hub-card h3 a,
+.service-card h3,
+.service-card h3 a {
+  color: var(--ink);
+}
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.js-reveal .reveal.reveal-left { transform: translate3d(-36px, 0, 0); }
+.js-reveal .reveal.reveal-right { transform: translate3d(36px, 0, 0); }
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js-reveal .reveal,
+  .js-reveal .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

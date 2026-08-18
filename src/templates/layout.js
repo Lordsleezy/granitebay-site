@@ -1,6 +1,6 @@
 import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, areasNavItems, footerColumns } from "../data/site.js";
 
-const assetVersion = "20260721-seo1";
+const assetVersion = "20260818-visual1";
 
 const citySites = [
   { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },

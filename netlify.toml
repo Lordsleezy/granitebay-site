@@ -3,6 +3,18 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/service-areas/granite-bay"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-areas/granite-bay/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/privacy"
   to = "/privacy/"
   status = 301

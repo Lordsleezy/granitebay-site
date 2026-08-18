@@ -68,13 +68,19 @@ function localBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     "@id": `${site.domain}/#localbusiness`,
-    name: site.name,
-    alternateName: site.localName,
+    name: site.localName,
+    alternateName: site.name,
     url: site.domain + "/",
     telephone: site.phoneTel,
     priceRange: site.priceRange,
     image: site.ogImage,
     sameAs: site.socialSameAs,
+    brand: { "@type": "Brand", name: site.name },
+    parentOrganization: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.parentUrl,
+    },
     areaServed: site.areaServed.map((name) => ({ "@type": "City", name })),
     address: {
       "@type": "PostalAddress",
@@ -83,6 +89,7 @@ function localBusinessSchema() {
       addressCountry: site.address.country,
     },
     description:
+      site.schemaDescription ||
       `Licensed fence contractor serving ${site.address.locality} with installation, repair, wood, vinyl, chain link, gates, and commercial fencing.`,
   };
 }

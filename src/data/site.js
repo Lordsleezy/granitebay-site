@@ -33,6 +33,8 @@ export const site = {
   ],
   ogImage: "https://granitebayfencing.com/favicon-512x512.png",
   themeColor: "#fffaf2",
+  schemaDescription:
+    "Granite Bay fence company for estate lots, ranch lines, ornamental iron, pool fencing, and custom driveway gates. Twin Rivers Fence serves Granite Bay and Placer County, CA.",
 };
 
 export const fenceNavItems = [

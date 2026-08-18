@@ -16,6 +16,11 @@ const homeFaqs = [
     question: "Are you licensed and insured in Placer County?",
     answer: `Yes. Twin Rivers Fence is a California licensed contractor (#${site.license}) and carries insurance for residential and commercial fence work in Granite Bay and surrounding communities.`,
   },
+  {
+    question: "Is Granite Bay Fence Company part of Twin Rivers Fence?",
+    answer:
+      "Yes. granitebayfencing.com is Twin Rivers Fence's dedicated Granite Bay site — same licensed crew, same phone, focused on estate lots, ranch lines, ornamental iron, pool fencing, and custom driveway gates in Granite Bay.",
+  },
 ];
 
 export function renderHomePage() {
@@ -143,6 +148,7 @@ export function renderHomePage() {
       <p>Granite Bay sits between Folsom Lake and the Sierra foothills — a community defined by larger residential estates, hillside lots, and some of the strictest HOA standards in Placer County. Properties along Douglas Boulevard, Auburn Folsom Road, and Eureka Road often combine long perimeter runs with slope transitions, retaining-wall integrations, and view-preservation rules that favor ornamental iron over solid wood on lake-facing lots.</p>
       <p>We plan every project around the specifics of your address: whether you are in Hidden Lakes with its golf-course adjacency, Los Lagos with estate-scale driveway entries, Treelake Village near Granite Bay High School, or a horse property on the outskirts where ranch fence and residential privacy fencing meet on the same parcel.</p>
       <p>Placer County permitting, fire-hardening spacing near wildland interfaces, wildlife-resistant designs, and storm-durable post footings on sloped terrain are all part of a typical Granite Bay fence conversation — not afterthoughts.</p>
+      <p>Granite Bay Fence Company is Twin Rivers Fence's dedicated site for this market. We still work neighboring cities, but this homepage is written for Granite Bay lots: longer perimeters, ornamental entries, HOA view corridors, and ranch-to-residential transitions — not a city-name swap of a tract-home page.</p>
     </div>
   </section>
 
@@ -198,9 +204,9 @@ export function renderHomePage() {
 </section>`;
 
   return renderLayout({
-    title: "Granite Bay Fence Company | Free Estimates | License #1089233",
+    title: "Granite Bay Fence Company | Estate Lots, Ranch Lines & Custom Gates",
     description:
-      "Granite Bay Fence Company for estate, HOA, pool, wood, vinyl, iron, repair, and custom gate fencing. Call (916) 906-2254.",
+      "Licensed Granite Bay fence company for estate lots, ranch lines, ornamental iron, pool fencing, and custom driveway gates. Call (916) 906-2254.",
     path: "/",
     body,
     schemas: [faqSchema(homeFaqs)],

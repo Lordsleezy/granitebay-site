@@ -96,9 +96,20 @@
       try { window.turnstile.reset(widget); } catch (error) {}
     }
 
+    function formProof(startedAt) {
+      var s = String(startedAt || "");
+      var n = 2166136261;
+      for (var i = 0; i < s.length; i++) {
+        n ^= s.charCodeAt(i);
+        n = Math.imul(n, 16777619);
+      }
+      return (n >>> 0).toString(16);
+    }
+
     function stampFormStart() {
       if (!leadForm.dataset.startedAt) leadForm.dataset.startedAt = new Date().toISOString();
       ensureHidden(leadForm, "form_started_at", leadForm.dataset.startedAt);
+      ensureHidden(leadForm, "form_js", formProof(leadForm.dataset.startedAt));
     }
 
     function payloadFromForms() {
@@ -142,6 +153,7 @@
         utm_content: utm.utm_content || "",
         referrer: document.referrer || "",
         form_started_at: leadForm.dataset.startedAt || "",
+        form_js: formProof(leadForm.dataset.startedAt || ""),
         "cf-turnstile-response": (tokenField && tokenField.value) || "",
         "bot-field": (field(leadForm, "bot-field") && field(leadForm, "bot-field").value) || ""
       };
@@ -192,7 +204,7 @@
         if (status) status.textContent = "Something went wrong sending your request. Please call Twin Rivers Fence at (916) 906-2254.";
       }
 
-      var headers = { "Content-Type": "application/json", Accept: "application/json" };
+      var headers = { "Content-Type": "application/json", Accept: "application/json", "X-Fence-Lead": "1" };
       var primary = isCity ? endpoint : "/.netlify/functions/lead-ingest";
 
       fetch(primary, { method: "POST", headers: headers, body: JSON.stringify(body) })

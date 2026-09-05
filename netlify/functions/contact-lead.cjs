@@ -2,6 +2,8 @@ const crypto = require("crypto");
 
 const LEAD_ENDPOINT = "https://twinriversfence.com/";
 const INGEST_ENDPOINT = "https://twinriversfence.com/.netlify/functions/lead-ingest";
+const MIN_FILL_MS = 3000;
+const MAX_FILL_MS = 24 * 60 * 60 * 1000;
 
 function json(statusCode, payload) {
   return {
@@ -59,6 +61,39 @@ function siteOrigin() {
 
 function newLeadId() {
   return crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString("hex");
+}
+
+function formProof(startedAt) {
+  const s = String(startedAt || "");
+  let n = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    n ^= s.charCodeAt(i);
+    n = Math.imul(n, 16777619);
+  }
+  return (n >>> 0).toString(16);
+}
+
+function timingReason(startedAt) {
+  if (!clip(startedAt, 80)) return "missing";
+  const started = Date.parse(String(startedAt));
+  if (!Number.isFinite(started)) return "invalid";
+  const elapsed = Date.now() - started;
+  if (elapsed < 0 || elapsed > MAX_FILL_MS) return "invalid";
+  if (elapsed < MIN_FILL_MS) return "too-fast";
+  return "pass";
+}
+
+function headerValue(event, name) {
+  const headers = event.headers || {};
+  return String(headers[name] || headers[name.toLowerCase()] || headers[name.toUpperCase()] || "").trim();
+}
+
+function jsLeadOk(data, event) {
+  const startedAt = data.form_started_at || "";
+  const timing = timingReason(startedAt);
+  const proofOk = clip(data.form_js, 40) === formProof(startedAt);
+  const headerOk = headerValue(event, "x-fence-lead") === "1";
+  return { ok: timing === "pass" && proofOk && headerOk, timing, proofOk, headerOk };
 }
 
 function isQuoteLead(data) {
@@ -206,6 +241,17 @@ exports.handler = async function (event) {
   }
   if (!isQuoteLead(data) && !name) {
     return json(400, { ok: false, error: "Name and phone are required." });
+  }
+
+  const jsLead = jsLeadOk(data, event);
+  if (!jsLead.ok) {
+    console.warn(
+      "contact-lead blocked",
+      "timing=" + jsLead.timing,
+      "proof=" + jsLead.proofOk,
+      "header=" + jsLead.headerOk
+    );
+    return json(400, { ok: false, error: "Verification failed." });
   }
 
   const quoteLead = isQuoteLead(data);

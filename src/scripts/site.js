@@ -857,9 +857,20 @@
     try { window.turnstile.reset(widget); } catch (error) {}
   }
 
+  function formProof(startedAt) {
+    var s = String(startedAt || "");
+    var n = 2166136261;
+    for (var i = 0; i < s.length; i++) {
+      n ^= s.charCodeAt(i);
+      n = Math.imul(n, 16777619);
+    }
+    return (n >>> 0).toString(16);
+  }
+
   function stampFormStart(form) {
     if (!form.dataset.startedAt) form.dataset.startedAt = new Date().toISOString();
     ensureHidden(form, "form_started_at", form.dataset.startedAt);
+    ensureHidden(form, "form_js", formProof(form.dataset.startedAt));
   }
 
   function initContactForms() {
@@ -916,7 +927,7 @@
         }
         fetch("/.netlify/functions/contact-lead", {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" },
+          headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json", "X-Fence-Lead": "1" },
           body: body
         }).then(function (res) {
           if (res.ok) succeed();

@@ -850,14 +850,31 @@
     return el;
   }
 
+  function resetTurnstile(form) {
+    if (!window.turnstile) return;
+    var widget = form.querySelector(".cf-turnstile");
+    if (!widget) return;
+    try { window.turnstile.reset(widget); } catch (error) {}
+  }
+
+  function stampFormStart(form) {
+    if (!form.dataset.startedAt) form.dataset.startedAt = new Date().toISOString();
+    ensureHidden(form, "form_started_at", form.dataset.startedAt);
+  }
+
   function initContactForms() {
     var forms = Array.prototype.slice.call(document.querySelectorAll("form[name='contact']"));
     forms.forEach(function (form) {
+      stampFormStart(form);
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         if (form.dataset.submitting === "true") return;
-        if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+        if (typeof form.reportValidity === "function" && !form.reportValidity()) {
+          resetTurnstile(form);
+          return;
+        }
         var utm = readUtms();
+        stampFormStart(form);
         ensureHidden(form, "lead_id", (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("lead-" + Date.now()));
         ensureHidden(form, "lead_type", "contact");
         ensureHidden(form, "source_page", window.location.pathname);
@@ -878,6 +895,7 @@
         var body = new URLSearchParams(new FormData(form)).toString();
         function fail() {
           delete form.dataset.submitting;
+          resetTurnstile(form);
           if (button) button.disabled = false;
           if (status) {
             status.classList.add("is-error");
@@ -886,6 +904,9 @@
         }
         function succeed() {
           form.reset();
+          delete form.dataset.startedAt;
+          stampFormStart(form);
+          resetTurnstile(form);
           delete form.dataset.submitting;
           if (button) button.disabled = false;
           if (status) {
@@ -898,18 +919,8 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" },
           body: body
         }).then(function (res) {
-          if (res.ok) {
-            succeed();
-            return;
-          }
-          return fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: body
-          }).then(function (res2) {
-            if (res2.ok) succeed();
-            else fail();
-          });
+          if (res.ok) succeed();
+          else fail();
         }).catch(fail);
       });
     });

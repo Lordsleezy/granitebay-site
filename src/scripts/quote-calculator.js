@@ -89,12 +89,26 @@
       return estimateText;
     }
 
+    function resetTurnstile() {
+      if (!window.turnstile) return;
+      var widget = leadForm.querySelector(".cf-turnstile");
+      if (!widget) return;
+      try { window.turnstile.reset(widget); } catch (error) {}
+    }
+
+    function stampFormStart() {
+      if (!leadForm.dataset.startedAt) leadForm.dataset.startedAt = new Date().toISOString();
+      ensureHidden(leadForm, "form_started_at", leadForm.dataset.startedAt);
+    }
+
     function payloadFromForms() {
       var input = readInput();
       var utm = readUtms();
       var estimateText = updateEstimate();
       var id = ensureHidden(leadForm, "lead_id").value || leadId();
       ensureHidden(leadForm, "lead_id", id);
+      stampFormStart();
+      var tokenField = leadForm.querySelector("[name='cf-turnstile-response']");
       return {
         lead_id: id,
         name: (field(leadForm, "name") && field(leadForm, "name").value) || "",
@@ -127,6 +141,8 @@
         utm_term: utm.utm_term || "",
         utm_content: utm.utm_content || "",
         referrer: document.referrer || "",
+        form_started_at: leadForm.dataset.startedAt || "",
+        "cf-turnstile-response": (tokenField && tokenField.value) || "",
         "bot-field": (field(leadForm, "bot-field") && field(leadForm, "bot-field").value) || ""
       };
     }
@@ -134,11 +150,14 @@
     inputForm.addEventListener("input", updateEstimate);
     inputForm.addEventListener("change", updateEstimate);
 
+    stampFormStart();
+
     leadForm.addEventListener("submit", function (event) {
       event.preventDefault();
       if (leadForm.dataset.submitting === "true") return;
       var phone = field(leadForm, "phone");
       if (!phone || digits(phone.value).length < 10) {
+        resetTurnstile();
         if (status) status.textContent = "Please enter a phone number so we can follow up with an exact quote.";
         if (phone) phone.focus();
         return;
@@ -154,6 +173,9 @@
 
       function succeed() {
         delete leadForm.dataset.submitting;
+        delete leadForm.dataset.startedAt;
+        stampFormStart();
+        resetTurnstile();
         if (button) button.disabled = false;
         if (status) status.textContent = "Thanks — your estimate request was sent. Twin Rivers Fence will follow up with an exact quote.";
         field(leadForm, "name") && (field(leadForm, "name").value = "");
@@ -165,6 +187,7 @@
 
       function fail() {
         delete leadForm.dataset.submitting;
+        resetTurnstile();
         if (button) button.disabled = false;
         if (status) status.textContent = "Something went wrong sending your request. Please call Twin Rivers Fence at (916) 906-2254.";
       }

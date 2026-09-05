@@ -48,6 +48,15 @@ function hostnameFromEnv() {
   return "";
 }
 
+function siteOrigin() {
+  for (const key of ["URL", "DEPLOY_PRIME_URL"]) {
+    try {
+      if (process.env[key]) return new URL(process.env[key]).origin;
+    } catch (error) {}
+  }
+  return "";
+}
+
 function newLeadId() {
   return crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString("hex");
 }
@@ -90,6 +99,89 @@ function notificationMessage(record) {
   if (record.quote_details) chunks.push("", record.quote_details);
   chunks.push("", record.message || "No project notes provided.");
   return chunks.join("\n");
+}
+
+async function timedFetch(url, options, ms) {
+  const controller = new AbortController();
+  const timer = setTimeout(function () {
+    controller.abort();
+  }, ms);
+  try {
+    return await fetch(url, Object.assign({}, options, { signal: controller.signal }));
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function httpOk(response) {
+  return Boolean(response) && response.status >= 200 && response.status < 400;
+}
+
+async function postIngest(record, extra) {
+  try {
+    const response = await timedFetch(
+      INGEST_ENDPOINT,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.assign({}, record, extra)),
+      },
+      8000
+    );
+    return { status: response.status, ok: response.ok };
+  } catch (error) {
+    return { status: 0, ok: false, network: true };
+  }
+}
+
+async function deadLetter(record, ingestStatus) {
+  const origin = siteOrigin();
+  if (!origin) return false;
+  const body = new URLSearchParams({
+    "form-name": "lead-dead-letter",
+    alert: "FAIL-OPEN Twin Rivers ingest unreachable",
+    ingest_status: String(ingestStatus),
+    lead_id: record.lead_id || "",
+    name: record.name || "",
+    phone: record.phone || "",
+    email: record.email || "",
+    city: record.city || "",
+    source: record.source_domain || "",
+    source_page: record.source_page || "",
+    form_name: record.form_name || "",
+    message: record.message || "",
+  });
+  const response = await timedFetch(
+    origin + "/",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString(),
+      redirect: "manual",
+    },
+    8000
+  );
+  return httpOk(response);
+}
+
+async function failOpenWebhook(record, ingestStatus) {
+  const webhook = clip(process.env.LEAD_FAIL_OPEN_WEBHOOK, 500);
+  if (!webhook) return;
+  await timedFetch(
+    webhook,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        alert: "fail-open",
+        ingest_status: ingestStatus,
+        lead_id: record.lead_id,
+        source: record.source_domain,
+        form_name: record.form_name,
+      }),
+    },
+    5000
+  );
 }
 
 exports.handler = async function (event) {
@@ -160,32 +252,44 @@ exports.handler = async function (event) {
     message: notificationMessage(record),
   });
 
-  let chatOk = false;
-  let ingestOk = false;
-  try {
-    const response = await fetch(LEAD_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: payload.toString(),
-    });
-    chatOk = response.ok;
-  } catch (error) {
-    chatOk = false;
+  const ingest = await postIngest(record, {
+    "cf-turnstile-response": data["cf-turnstile-response"] || data.cf_turnstile_response || "",
+    form_started_at: data.form_started_at || "",
+    "bot-field": data["bot-field"] || "",
+  });
+
+  if (ingest.status === 400) {
+    return json(400, { ok: false, error: "Verification failed." });
   }
 
-  try {
-    const response = await fetch(INGEST_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(record),
-    });
-    ingestOk = response.ok;
-  } catch (error) {
-    ingestOk = false;
-  }
-
-  if (!chatOk && !ingestOk) {
-    return json(502, { ok: false, error: "Lead destination was unreachable." });
+  if (!ingest.ok) {
+    let saved = false;
+    try {
+      saved = await deadLetter(record, ingest.status);
+    } catch (error) {
+      saved = false;
+    }
+    try {
+      await failOpenWebhook(record, ingest.status);
+    } catch (error) {}
+    if (!saved) {
+      console.error("lead-dead-letter failed", "lead_id=" + leadId, "ingest_status=" + ingest.status);
+      return json(502, { ok: false, error: "Lead destination was unreachable." });
+    }
+  } else {
+    try {
+      await timedFetch(
+        LEAD_ENDPOINT,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: payload.toString(),
+        },
+        8000
+      );
+    } catch (error) {
+      console.error("lead-chat notify failed", "lead_id=" + leadId);
+    }
   }
 
   if (wantsHtml(event)) {

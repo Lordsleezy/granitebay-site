@@ -1963,6 +1963,7 @@ h1,h2 { color:var(--ink); text-shadow:none; } .eyebrow,.sub-text,.small,.fine-pr
 .quote-lead-form { display: grid; gap: .85rem; margin-top: 1rem; }
 .quote-status { min-height: 1.2rem; color: var(--soft); font-size: .9rem; }
 .quote-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.cf-turnstile { margin: .35rem 0 .15rem; }
 @media (max-width: 900px) {
   .quote-calculator-grid, .quote-field-grid { grid-template-columns: 1fr; }
   .quote-result-card { position: relative; top: auto; }

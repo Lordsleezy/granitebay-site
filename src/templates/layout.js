@@ -1,6 +1,6 @@
 import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, areasNavItems, toolsNavItems, footerColumns } from "../data/site.js";
 
-const assetVersion = "20260818-quote1";
+const assetVersion = "20260824-bot2";
 
 const citySites = [
   { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },
@@ -50,6 +50,35 @@ function escapeHtml(str = "") {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function turnstileSiteKey() {
+  return String(process.env.TURNSTILE_SITE_KEY || site.turnstileSiteKey || "").trim();
+}
+
+function leadHoneypotField() {
+  return `<p class="quote-visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>`;
+}
+
+function turnstileWidget() {
+  return `<div class="cf-turnstile" data-sitekey="${escapeHtml(turnstileSiteKey())}"></div>`;
+}
+
+function deadLetterRegistrar() {
+  return `<form name="lead-dead-letter" method="POST" data-netlify="true" hidden aria-hidden="true" tabindex="-1">
+  <input type="hidden" name="form-name" value="lead-dead-letter">
+  <input type="hidden" name="alert">
+  <input type="hidden" name="ingest_status">
+  <input type="hidden" name="lead_id">
+  <input type="hidden" name="name">
+  <input type="hidden" name="phone">
+  <input type="hidden" name="email">
+  <input type="hidden" name="city">
+  <input type="hidden" name="source">
+  <input type="hidden" name="source_page">
+  <input type="hidden" name="form_name">
+  <input type="hidden" name="message">
+</form>`;
 }
 
 function breadcrumbSchema(crumbs) {
@@ -284,6 +313,8 @@ ${
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>`
     : ""
 }
+${deadLetterRegistrar()}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="/assets/js/site.js?v=${assetVersion}" defer></script>
 <script src="/assets/js/google-reviews.js?v=${assetVersion}" defer></script>
 ${includeCalculators ? `<script src="/assets/js/calculators.js?v=${assetVersion}" defer></script>` : ""}
@@ -294,4 +325,4 @@ ${includeQuoteTool ? `<script src="/assets/js/fence-pricing.js?v=${assetVersion}
 </html>`;
 }
 
-export { escapeHtml, breadcrumbSchema, faqSchema, serviceSchema, renderBreadcrumbs, localBusinessSchema };
+export { escapeHtml, breadcrumbSchema, faqSchema, serviceSchema, renderBreadcrumbs, localBusinessSchema, leadHoneypotField, turnstileWidget };

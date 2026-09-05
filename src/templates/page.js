@@ -7,6 +7,8 @@ import {
   faqSchema,
   serviceSchema,
   renderLayout,
+  leadHoneypotField,
+  turnstileWidget,
 } from "./layout.js";
 
 function paragraphs(list = []) {
@@ -76,15 +78,16 @@ function contactSection(note) {
         <li>Warranty-backed workmanship — ask us for project details</li>
       </ul>
     </div>
-    <form name="contact" id="contact-form" method="POST" action="/.netlify/functions/contact-lead" data-netlify="true" netlify-honeypot="bot-field">
+    <form name="contact" id="contact-form" method="POST" action="/.netlify/functions/contact-lead" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact">
       <input type="hidden" name="city" value="${site.address.locality}">
       <input type="hidden" name="source" value="${site.domain.replace(/^https?:\/\//, "")}">
-      <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+      ${leadHoneypotField()}
       <input type="text" name="name" placeholder="Your name" required autocomplete="name">
       <input type="tel" name="phone" placeholder="Phone number" required autocomplete="tel">
       <input type="email" name="email" placeholder="Email (optional)" autocomplete="email">
       <textarea name="message" rows="5" placeholder="Tell us about your fence project..."></textarea>
+      ${turnstileWidget()}
       <button type="submit">Send message -&gt;</button>
       <p class="fine-print">By submitting you agree to be contacted by Twin Rivers Fence.</p>
       <p class="success-message" aria-live="polite"></p>
@@ -225,11 +228,11 @@ function renderFenceQuote() {
           <div class="offer-card"><strong>Schedule Today</strong><span>Receive up to 15% off qualifying projects.</span></div>
           <div class="offer-card"><strong>Refer A Friend</strong><span>Receive up to 25% off for both you and your referred friend.</span></div>
         </div>
-        <form name="instant-quote" method="POST" action="/.netlify/functions/contact-lead" data-netlify="true" netlify-honeypot="bot-field" class="quote-lead-form" data-quote-lead-form>
+        <form name="instant-quote" method="POST" action="/.netlify/functions/contact-lead" netlify-honeypot="bot-field" class="quote-lead-form" data-quote-lead-form>
           <input type="hidden" name="form-name" value="instant-quote">
           <input type="hidden" name="lead_type" value="fence-quote">
           <input type="hidden" name="source" value="${escapeHtml(site.domain.replace(/^https?:\/\//, ""))}">
-          <p class="quote-visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          ${leadHoneypotField()}
           <input type="hidden" name="estimated_range">
           <input type="hidden" name="fence_type">
           <input type="hidden" name="height">
@@ -242,6 +245,7 @@ function renderFenceQuote() {
           <div class="quote-field"><label for="quote-phone">Phone Number (Required)</label><input id="quote-phone" name="phone" type="tel" autocomplete="tel" required></div>
           <div class="quote-field"><label for="quote-email">Email (Optional)</label><input id="quote-email" name="email" type="email" autocomplete="email"></div>
           <div class="quote-field"><label for="quote-notes">Project Notes</label><textarea id="quote-notes" name="notes"></textarea></div>
+          ${turnstileWidget()}
           <button class="btn-gold" type="submit">Get My Exact Quote</button>
           <p class="quote-status" data-quote-status aria-live="polite"></p>
         </form>

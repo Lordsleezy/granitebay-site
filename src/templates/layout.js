@@ -1,6 +1,6 @@
 import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, serviceNavItems, areasNavItems, toolsNavItems, footerColumns } from "../data/site.js";
 
-const assetVersion = "20260905-bot3";
+const assetVersion = "20260905-chat1";
 
 const citySites = [
   { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },
@@ -62,6 +62,88 @@ function leadHoneypotField() {
 
 function turnstileWidget() {
   return `<div class="cf-turnstile" data-sitekey="${escapeHtml(turnstileSiteKey())}"></div>`;
+}
+
+function riverContactSection({ heading = "Contact Us", note = "" } = {}) {
+  const city = escapeHtml(site.address.locality);
+  const source = escapeHtml(String(site.domain || "").replace(/^https?:\/\//, ""));
+  return `
+<section class="dark-section" id="contact">
+  <div class="ai-contact-header">
+    <span class="section-tag">Free Estimate</span>
+    <h2>${escapeHtml(heading)}</h2>
+    ${note ? `<p>${escapeHtml(note)}</p>` : ""}
+  </div>
+  <div class="ai-contact-layout">
+    <section class="river-chat" aria-label="Twin Rivers Fence project assistant chat">
+      <div class="river-chat-top">
+        <div class="river-status">
+          <div class="river-avatar" aria-hidden="true">TR</div>
+          <div>
+            <strong>River</strong>
+            <span>Twin Rivers estimate desk</span>
+          </div>
+        </div>
+        <div class="river-live-dot" aria-label="Assistant is online"></div>
+      </div>
+      <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <div class="quick-replies" aria-label="Suggested replies"></div>
+      <div class="chat-composer">
+        <label class="sr-only" for="chat-input">Message River</label>
+        <input id="chat-input" type="text" autocomplete="off" placeholder="Tell River about your project...">
+        <button class="chat-send" type="button">Send</button>
+      </div>
+      <p class="read-receipt" id="read-receipt" aria-live="polite"></p>
+      <div class="lead-complete-note" aria-live="polite"></div>
+    </section>
+    <aside class="river-mascot-card" aria-label="River, a Twin Rivers Fence construction professional">
+      <div class="speech-bubble">I'm ready when you are. The questions on the left help our crew price the right solution.</div>
+      <div class="pro-worker" aria-hidden="true">
+        <div class="pro-worker-shadow"></div>
+        <div class="pro-hardhat"><span>TRF</span></div>
+        <div class="pro-head">
+          <div class="pro-brow left"></div>
+          <div class="pro-brow right"></div>
+          <div class="pro-eye left"></div>
+          <div class="pro-eye right"></div>
+          <div class="pro-nose"></div>
+          <div class="pro-mouth"></div>
+        </div>
+        <div class="pro-neck"></div>
+        <div class="pro-body">
+          <div class="pro-collar left"></div>
+          <div class="pro-collar right"></div>
+          <div class="pro-logo">Twin Rivers</div>
+        </div>
+        <div class="pro-arm left"></div>
+        <div class="pro-arm right"></div>
+        <div class="pro-hand left"></div>
+        <div class="pro-hand right"></div>
+        <div class="pro-belt">
+          <div class="pro-buckle"></div>
+          <div class="pro-pouch left"></div>
+          <div class="pro-pouch right"></div>
+        </div>
+        <div class="pro-leg left"></div>
+        <div class="pro-leg right"></div>
+        <div class="pro-boot left"></div>
+        <div class="pro-boot right"></div>
+      </div>
+    </aside>
+    <form name="contact" method="POST" action="/.netlify/functions/contact-lead" class="netlify-lead-form" aria-hidden="true">
+      <input type="hidden" name="form-name" value="contact">
+      <input type="hidden" name="city" value="${city}">
+      <input type="hidden" name="source" value="${source}">
+      <input type="hidden" name="name">
+      <input type="hidden" name="phone">
+      <input type="hidden" name="email">
+      <input type="hidden" name="lead_id">
+      <input type="hidden" name="lead_type" value="chat">
+      <textarea name="message"></textarea>
+      ${leadHoneypotField()}
+    </form>
+  </div>
+</section>`;
 }
 
 function deadLetterRegistrar() {
@@ -325,4 +407,4 @@ ${includeQuoteTool ? `<script src="/assets/js/fence-pricing.js?v=${assetVersion}
 </html>`;
 }
 
-export { escapeHtml, breadcrumbSchema, faqSchema, serviceSchema, renderBreadcrumbs, localBusinessSchema, leadHoneypotField, turnstileWidget };
+export { escapeHtml, breadcrumbSchema, faqSchema, serviceSchema, renderBreadcrumbs, localBusinessSchema, leadHoneypotField, turnstileWidget, riverContactSection };

@@ -9,6 +9,7 @@ import {
   renderLayout,
   leadHoneypotField,
   turnstileWidget,
+  riverContactSection,
 } from "./layout.js";
 
 function paragraphs(list = []) {
@@ -64,36 +65,10 @@ function trustStrip() {
 }
 
 function contactSection(note) {
-  return `
-<section class="dark-section" id="contact">
-  <div class="contact-grid">
-    <div class="contact-copy">
-      <h2>Get a free estimate</h2>
-      <p>${escapeHtml(note || `Tell us about your ${site.address.locality} fence project — we will give you a straight answer and a real quote.`)}</p>
-      <div class="contact-detail"><span>Phone</span> <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
-      <p class="small">${escapeHtml(site.address.locality)}, ${site.address.region} — Serving ${escapeHtml(site.address.locality)} and nearby communities</p>
-      <ul class="eeat-list">
-        <li>California contractor license #${site.license}</li>
-        <li>Residential, commercial &amp; agricultural fencing</li>
-        <li>Warranty-backed workmanship — ask us for project details</li>
-      </ul>
-    </div>
-    <form name="contact" id="contact-form" method="POST" action="/.netlify/functions/contact-lead" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="contact">
-      <input type="hidden" name="city" value="${site.address.locality}">
-      <input type="hidden" name="source" value="${site.domain.replace(/^https?:\/\//, "")}">
-      ${leadHoneypotField()}
-      <input type="text" name="name" placeholder="Your name" required autocomplete="name">
-      <input type="tel" name="phone" placeholder="Phone number" required autocomplete="tel">
-      <input type="email" name="email" placeholder="Email (optional)" autocomplete="email">
-      <textarea name="message" rows="5" placeholder="Tell us about your fence project..."></textarea>
-      ${turnstileWidget()}
-      <button type="submit">Send message -&gt;</button>
-      <p class="fine-print">By submitting you agree to be contacted by Twin Rivers Fence.</p>
-      <p class="success-message" aria-live="polite"></p>
-    </form>
-  </div>
-</section>`;
+  return riverContactSection({
+    heading: "Get a free estimate",
+    note: note || `Tell us about your ${site.address.locality} fence project — we will give you a straight answer and a real quote.`,
+  });
 }
 
 function pageHero(page, crumbs) {

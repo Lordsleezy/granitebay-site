@@ -967,9 +967,263 @@
   }
 
 
+  function initRiverAssistant() {
+    var log = document.getElementById("chat-log");
+    var input = document.getElementById("chat-input");
+    var send = document.querySelector(".chat-send");
+    var quickReplyWrap = document.querySelector(".quick-replies");
+    var mascot = document.querySelector(".river-mascot-card");
+    var speech = document.querySelector(".speech-bubble");
+    var receipt = document.getElementById("read-receipt");
+    var completeNote = document.querySelector(".lead-complete-note");
+    var leadForm = document.querySelector(".netlify-lead-form");
+    if (!log || !input || !send || !leadForm) return;
+    if (!leadForm.dataset.startedAt) leadForm.dataset.startedAt = new Date().toISOString();
+
+    var assistantState = {
+      step: "name",
+      submitted: false,
+      responding: false,
+      data: { name: "", phone: "", email: "", project_type: "Website chat request", message: "" },
+      transcript: []
+    };
+
+    function setMascot(mode, text) {
+      if (!mascot) return;
+      mascot.classList.remove("is-talking", "is-typing", "is-complete");
+      if (mode) mascot.classList.add(mode);
+      if (speech && text) speech.textContent = text;
+    }
+
+    function addMessage(role, text) {
+      assistantState.transcript.push((role === "assistant" ? "River: " : "Visitor: ") + text);
+      if (role === "user") {
+        if (receipt) receipt.textContent = "River is reading...";
+        return;
+      }
+      log.innerHTML = "";
+      var row = document.createElement("div");
+      row.className = "chat-message " + role;
+      var bubble = document.createElement("div");
+      bubble.className = "message-bubble";
+      bubble.textContent = text;
+      row.appendChild(bubble);
+      log.appendChild(row);
+      log.scrollTop = log.scrollHeight;
+      if (receipt) receipt.textContent = "Delivered";
+    }
+
+    function showTyping() {
+      var row = document.createElement("div");
+      row.className = "chat-message assistant typing-row";
+      row.innerHTML = '<div class="typing-indicator" aria-label="River is typing"><span></span><span></span><span></span></div>';
+      log.appendChild(row);
+      log.scrollTop = log.scrollHeight;
+      setMascot("is-talking", "Let me get the next detail for the estimate desk.");
+    }
+
+    function hideTyping() {
+      var typing = log.querySelector(".typing-row");
+      if (typing) typing.remove();
+    }
+
+    function assistantSay(text, delay) {
+      assistantState.responding = true;
+      input.disabled = true;
+      send.disabled = true;
+      showTyping();
+      window.setTimeout(function () {
+        hideTyping();
+        addMessage("assistant", text);
+        setMascot("", "The chat on the left helps our team prepare the right follow-up.");
+        assistantState.responding = false;
+        input.disabled = false;
+        send.disabled = false;
+        input.focus();
+      }, delay || 650);
+    }
+
+    function renderQuickReplies(options) {
+      if (!quickReplyWrap) return;
+      quickReplyWrap.innerHTML = "";
+      (options || []).forEach(function (label) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "quick-reply";
+        button.textContent = label;
+        button.addEventListener("click", function () {
+          handleUserMessage(label);
+        });
+        quickReplyWrap.appendChild(button);
+      });
+    }
+
+    function captureFromStep(text) {
+      var emailMatch = text.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+      var digitCount = (text.match(/\d/g) || []).length;
+      if (assistantState.step === "name") assistantState.data.name = text;
+      else if (assistantState.step === "phone" && digitCount >= 10) assistantState.data.phone = text;
+      else if (assistantState.step === "email") assistantState.data.email = /skip|none|no thanks/i.test(text) ? "Not provided" : (emailMatch ? emailMatch[0] : text);
+      else if (assistantState.step === "message") assistantState.data.message = text;
+    }
+
+    function nextStep() {
+      var order = ["name", "phone", "email", "message"];
+      for (var i = 0; i < order.length; i++) {
+        if (!assistantState.data[order[i]]) {
+          assistantState.step = order[i];
+          return;
+        }
+      }
+      assistantState.step = "complete";
+    }
+
+    function promptForStep() {
+      if (assistantState.step === "name") {
+        renderQuickReplies([]);
+        input.placeholder = "Type your name";
+        return "What is your name?";
+      }
+      if (assistantState.step === "phone") {
+        renderQuickReplies([]);
+        input.placeholder = "Type your phone number";
+        return "Thanks. What is the best phone number to reach you? A 10-digit phone number is required so we can follow up.";
+      }
+      if (assistantState.step === "email") {
+        renderQuickReplies(["Skip email"]);
+        input.placeholder = "Type your email, or skip";
+        return "Email is optional. If you want, add it here. Otherwise tap Skip email.";
+      }
+      if (assistantState.step === "message") {
+        renderQuickReplies([]);
+        input.placeholder = "Tell us what you want done";
+        return "Last thing - what would you like done?";
+      }
+      return "";
+    }
+
+    function enoughForLead() {
+      return assistantState.data.name && assistantState.data.phone && assistantState.data.message;
+    }
+
+    async function submitLead() {
+      if (assistantState.submitted) return;
+      assistantState.submitted = true;
+      var visitorRequest = assistantState.data.message;
+      assistantState.data.project_type = visitorRequest;
+      assistantState.data.message = "Name: " + assistantState.data.name + "\nPhone: " + assistantState.data.phone + "\nEmail: " + assistantState.data.email + "\nWhat they want done: " + visitorRequest + "\n\nConversation:\n" + assistantState.transcript.join("\n");
+      var leadId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("lead-" + Date.now());
+      var startedAt = leadForm.dataset.startedAt || new Date().toISOString();
+      var cityField = leadForm.querySelector('[name="city"]');
+      var payload = {
+        lead_id: leadId,
+        name: assistantState.data.name || "",
+        email: assistantState.data.email || "",
+        phone: assistantState.data.phone || "",
+        city: (cityField && cityField.value) || "",
+        source_domain: window.location.hostname,
+        source_page: window.location.pathname + "#contact",
+        form_name: "contact",
+        lead_type: "chat",
+        message: visitorRequest || "",
+        project_details: assistantState.data.message || "",
+        referrer: document.referrer || "",
+        form_started_at: startedAt,
+        form_js: formProof(startedAt),
+        "bot-field": ""
+      };
+
+      try {
+        var res = await fetch("/.netlify/functions/contact-lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json", "X-Fence-Lead": "1" },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("lead failed");
+      } catch (error) {
+        assistantState.submitted = false;
+        if (completeNote) {
+          completeNote.textContent = "Something went wrong sending your request. Please call Twin Rivers Fence at (916) 906-2254.";
+          completeNote.classList.add("is-visible");
+        }
+        setMascot("", "Please call us directly if the form does not go through.");
+        renderQuickReplies(["Call (916) 906-2254"]);
+        return;
+      }
+
+      if (completeNote) {
+        completeNote.textContent = "Thanks - your request was sent to Twin Rivers Fence. A team member will follow up soon.";
+        completeNote.classList.add("is-visible");
+      }
+      setMascot("is-complete", "Got it. Your request was sent to Twin Rivers Fence.");
+      renderQuickReplies(["Start another project", "Call (916) 906-2254"]);
+    }
+
+    function handleUserMessage(text) {
+      if (assistantState.responding) return;
+      if (!text.trim()) return;
+      if (/start another/i.test(text)) {
+        assistantState.step = "name";
+        assistantState.submitted = false;
+        Object.keys(assistantState.data).forEach(function (key) { assistantState.data[key] = ""; });
+        assistantState.data.project_type = "Website chat request";
+        if (completeNote) completeNote.classList.remove("is-visible");
+        log.innerHTML = "";
+        startConversation();
+        return;
+      }
+      if (/^call\s*\(916\)\s*906-2254$/i.test(text.trim())) {
+        window.location.href = "tel:+19169062254";
+        return;
+      }
+      if (assistantState.submitted) {
+        input.value = "";
+        assistantSay("This project is already ready for the Twin Rivers team. You can start another project or call us directly if you'd like to add something urgent.", 500);
+        return;
+      }
+      if (assistantState.step === "phone" && (text.match(/\d/g) || []).length < 10) {
+        input.value = "";
+        assistantSay("Please enter a 10-digit phone number so we can call you back.", 500);
+        return;
+      }
+      addMessage("user", text);
+      input.value = "";
+      captureFromStep(text);
+      nextStep();
+      if (enoughForLead() && assistantState.step === "complete") {
+        assistantSay("Perfect. I have your name, phone number, and project notes. I'll send this to Twin Rivers Fence now.", 700);
+        window.setTimeout(submitLead, 1250);
+        return;
+      }
+      assistantSay(promptForStep(), 650);
+    }
+
+    function startConversation() {
+      input.placeholder = "Type your name";
+      addMessage("assistant", "What's your name?");
+      renderQuickReplies([]);
+    }
+
+    send.addEventListener("click", function () {
+      handleUserMessage(input.value);
+    });
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        handleUserMessage(input.value);
+      }
+    });
+    input.addEventListener("input", function () {
+      setMascot(input.value ? "is-typing" : "", input.value ? "I'm following along." : "The chat on the left helps our team prepare the right follow-up.");
+    });
+
+    startConversation();
+  }
+
   initHeroCanvas();
   initGsap();
   initReveals();
   initCounters();
   initContactForms();
+  initRiverAssistant();
 }());

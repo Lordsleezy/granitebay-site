@@ -1,5 +1,5 @@
 ﻿import { site } from "../data/site.js";
-import { escapeHtml, faqSchema, renderLayout, leadHoneypotField, turnstileWidget } from "./layout.js";
+import { escapeHtml, faqSchema, renderLayout, riverContactSection } from "./layout.js";
 
 const homeFaqs = [
   {
@@ -181,30 +181,10 @@ export function renderHomePage() {
     <p class="seo-service-copy" style="margin-top:2rem;text-align:center"><a href="/faq/">Visit the full FAQ Center</a></p>
   </section>
 
-  <section class="dark-section" id="contact">
-  <div class="contact-grid">
-    <div class="contact-copy">
-      <h2>Get a free estimate</h2>
-      <p>Tell us about your Granite Bay fence project — we will give you a straight answer and a real quote.</p>
-      <div class="contact-detail"><span>Phone</span> <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
-      <p class="small">Granite Bay, California — Serving Folsom, Roseville, Loomis, Rocklin, Lincoln &amp; El Dorado Hills</p>
-    </div>
-    <form name="contact" id="contact-form" method="POST" action="/.netlify/functions/contact-lead" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="contact">
-      <input type="hidden" name="city" value="${site.address.locality}">
-      <input type="hidden" name="source" value="${site.domain.replace(/^https?:\/\//, "")}">
-      ${leadHoneypotField()}
-      <input type="text" name="name" placeholder="Your name" required autocomplete="name">
-      <input type="tel" name="phone" placeholder="Phone number" required autocomplete="tel">
-      <input type="email" name="email" placeholder="Email (optional)" autocomplete="email">
-      <textarea name="message" rows="5" placeholder="Tell us about your fence project..."></textarea>
-      ${turnstileWidget()}
-      <button type="submit">Send message -&gt;</button>
-      <p class="fine-print">By submitting you agree to be contacted by Twin Rivers Fence.</p>
-      <p class="success-message" aria-live="polite"></p>
-    </form>
-  </div>
-</section>`;
+  ${riverContactSection({
+    heading: "Get a free estimate",
+    note: "Tell us about your Granite Bay fence project — we will give you a straight answer and a real quote.",
+  })}`;
 
   return renderLayout({
     title: "Granite Bay Fence Company | Estate Lots, Ranch Lines & Custom Gates",

@@ -15,6 +15,42 @@
     return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
   }
 
+  var perf = (function detectPerf() {
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var mem = Number(navigator.deviceMemory || 8);
+    var cores = Number(navigator.hardwareConcurrency || 8);
+    var saveData = Boolean(conn && conn.saveData);
+    var slowNet = Boolean(conn && /2g/.test(String(conn.effectiveType || "")));
+    var mobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var low = Boolean(saveData || slowNet || reduced || mem <= 4 || cores <= 4 || (mobile && mem <= 6));
+    document.documentElement.classList.add(low ? "is-low-power" : "is-high-power");
+    if (mobile) document.documentElement.classList.add("is-mobile-view");
+    return { low: low, mobile: mobile, reduced: reduced, targetFps: low ? 30 : mobile ? 45 : 60 };
+  })();
+
+  var scrollIdle = true;
+  var scrollIdleListeners = [];
+
+  function onScrollIdleChange(fn) {
+    scrollIdleListeners.push(fn);
+  }
+
+  function bindScrollIdle() {
+    var timer = 0;
+    function setIdle(next) {
+      if (scrollIdle === next) return;
+      scrollIdle = next;
+      document.documentElement.classList.toggle("is-scrolling", !next);
+      for (var i = 0; i < scrollIdleListeners.length; i++) scrollIdleListeners[i](next);
+    }
+    window.addEventListener("scroll", function () {
+      setIdle(false);
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(function () { setIdle(true); }, 140);
+    }, { passive: true });
+  }
+
   function initHeroCanvas() {
     var hero = document.getElementById("hero");
     var canvas = document.getElementById("hero-canvas");
@@ -36,6 +72,11 @@
     var dustClouds = [];
     var rafId = null;
     var lastFrame = 0;
+    var pausedAt = 0;
+    var skyGradient = null;
+    var targetFps = perf.targetFps;
+    var slowFrames = 0;
+    var resizeTimer = 0;
     var paused = document.hidden;
     var stateStartTime = performance.now();
     var currentState = "BUILDING";
@@ -53,7 +94,7 @@
 
     function resizeCanvas() {
       var rect = hero.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, perf.low ? 1 : 1.25);
       width = Math.max(320, Math.round(rect.width));
       height = Math.max(480, Math.round(rect.height));
       canvas.width = Math.round(width * dpr);
@@ -61,13 +102,17 @@
       canvas.style.width = width + "px";
       canvas.style.height = height + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = "high";
+      ctx.imageSmoothingEnabled = !perf.low;
+      ctx.imageSmoothingQuality = "low";
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       scale = width / 1200;
       groundY = height * 0.62;
       fenceY = groundY - 10 * scale;
+      skyGradient = ctx.createLinearGradient(0, 0, 0, groundY);
+      skyGradient.addColorStop(0, "#87CEEB");
+      skyGradient.addColorStop(0.52, "#c8e6f0");
+      skyGradient.addColorStop(1, "#e8d5a0");
       createFencePieces();
       createAmbient();
     }
@@ -114,8 +159,9 @@
               trigger: clamp((x + postSpacing * 0.65 + railIndex * 8 * scale) / (width + postSpacing), 0, 1)
             });
           });
-          for (var p = 1; p <= 4; p++) {
-            var px = x + p * (postSpacing / 5) - picketW * 0.5;
+          var picketCount = perf.low ? 3 : 4;
+          for (var p = 1; p <= picketCount; p++) {
+            var px = x + p * (postSpacing / (picketCount + 1)) - picketW * 0.5;
             fencePieces.push({
               kind: "picket",
               x: px,
@@ -154,21 +200,19 @@
     }
 
     function drawBackground() {
-      var gradient = ctx.createLinearGradient(0, 0, 0, groundY);
-      gradient.addColorStop(0, "#87CEEB");
-      gradient.addColorStop(0.52, "#c8e6f0");
-      gradient.addColorStop(1, "#e8d5a0");
-      ctx.fillStyle = gradient;
+      ctx.fillStyle = skyGradient || "#87CEEB";
       ctx.fillRect(0, 0, width, height);
 
       var sunX = width * 0.85;
       var sunY = 80 * scale;
-      [65, 85, 105].forEach(function (r) {
-        ctx.beginPath();
-        ctx.arc(sunX, sunY, r * scale, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,220,80,0.08)";
-        ctx.fill();
-      });
+      if (!perf.low) {
+        [65, 105].forEach(function (r) {
+          ctx.beginPath();
+          ctx.arc(sunX, sunY, r * scale, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255,220,80,0.08)";
+          ctx.fill();
+        });
+      }
       ctx.beginPath();
       ctx.arc(sunX, sunY, 45 * scale, 0, Math.PI * 2);
       ctx.fillStyle = "#ffe16a";
@@ -179,13 +223,15 @@
 
       ctx.fillStyle = "#4a8c3f";
       ctx.fillRect(0, groundY, width, height - groundY);
-      ctx.strokeStyle = "rgba(0,0,0,0.04)";
-      ctx.lineWidth = 1;
-      for (var y = groundY; y < height; y += 8 * scale) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
+      if (!perf.low) {
+        ctx.strokeStyle = "rgba(0,0,0,0.04)";
+        ctx.lineWidth = 1;
+        for (var y = groundY; y < height; y += 16 * scale) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
       }
     }
 
@@ -689,7 +735,11 @@
     function loop(now) {
       if (paused) return;
       rafId = requestAnimationFrame(loop);
-      if (now - lastFrame < 1000 / 60) return;
+      var minGap = 1000 / targetFps;
+      if (now - lastFrame < minGap) return;
+      if (lastFrame && now - lastFrame > 28) slowFrames += 1;
+      else slowFrames = Math.max(0, slowFrames - 1);
+      if (slowFrames > 8) targetFps = 30;
       lastFrame = now;
 
       var elapsed = now - stateStartTime;
@@ -721,33 +771,49 @@
     var heroVisible = true;
 
     function setPaused(nextPaused) {
-      paused = nextPaused;
-      if (paused) stop();
-      else {
-        lastFrame = performance.now();
-        stateStartTime = performance.now() - Math.min(STATES[currentState].duration - 1, STATES[currentState].duration * buildProgress);
-        start();
+      if (nextPaused === paused) return;
+      if (nextPaused) {
+        paused = true;
+        pausedAt = performance.now();
+        stop();
+        return;
       }
+      if (pausedAt) stateStartTime += performance.now() - pausedAt;
+      paused = false;
+      pausedAt = 0;
+      lastFrame = 0;
+      start();
+    }
+
+    function syncPause() {
+      setPaused(document.hidden || !heroVisible || !scrollIdle);
     }
 
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-    document.addEventListener("visibilitychange", function () {
-      setPaused(document.hidden || !heroVisible);
+    window.addEventListener("resize", function () {
+      if (resizeTimer) window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(resizeCanvas, 160);
     });
+    document.addEventListener("visibilitychange", syncPause);
+    onScrollIdleChange(syncPause);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         heroVisible = entries[0].isIntersecting;
-        setPaused(document.hidden || !heroVisible);
+        syncPause();
       }, { threshold: 0.08 }).observe(hero);
     }
-    setPaused(document.hidden || !heroVisible);
+    syncPause();
   }
 
   function initGsap() {
     if (!window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.config({ limitCallbacks: true });
+    gsap.config({ force3D: true, nullTargetWarn: false });
+    ScrollTrigger.config({
+      limitCallbacks: true,
+      ignoreMobileResize: true,
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
+    });
     var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduceMotion) {
@@ -755,9 +821,9 @@
       return;
     }
 
-    var isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
-    var slide = isMobile ? 16 : 32;
-    var rise = isMobile ? 12 : 20;
+    var isMobile = perf.mobile;
+    var slide = perf.low ? 10 : isMobile ? 16 : 24;
+    var rise = perf.low ? 8 : isMobile ? 12 : 16;
 
     gsap.fromTo(".hero-inner > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out", onComplete: function () { gsap.set(".hero-inner > *", { clearProps: "willChange" }); } });
     gsap.to(".scroll-line", { height: 50, duration: 0.8, ease: "power2.out", delay: 0.25 });
@@ -1220,9 +1286,36 @@
     startConversation();
   }
 
+  function initSoftParallax() {
+    if (perf.low || perf.reduced) return;
+    var images = document.querySelectorAll(".photo-bg");
+    if (!images.length) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var viewH = window.innerHeight || 1;
+      for (var i = 0; i < images.length; i++) {
+        var img = images[i];
+        var section = img.closest(".photo-section");
+        if (!section) continue;
+        var rect = section.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > viewH) continue;
+        var p = (viewH - rect.top) / (viewH + rect.height) - 0.5;
+        img.style.transform = "translate3d(0," + (p * 20).toFixed(1) + "px,0)";
+      }
+    }
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+  }
+
+  bindScrollIdle();
   initHeroCanvas();
   initGsap();
   initReveals();
+  initSoftParallax();
   initCounters();
   initContactForms();
   initRiverAssistant();

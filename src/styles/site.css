@@ -13,7 +13,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: var(--black);
 }
 
@@ -54,6 +54,8 @@ a {
   height: 100%;
   display: block;
   pointer-events: none;
+  contain: strict;
+  transform: translateZ(0);
 }
 
 main,
@@ -1317,7 +1319,7 @@ footer a:hover {
   z-index: 50;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   background: rgba(6,6,6,0.78);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(6px);
 }
 
 .topbar-inner {
@@ -2145,4 +2147,34 @@ h1,h2 { color:var(--ink); text-shadow:none; } .eyebrow,.sub-text,.small,.fine-pr
   .pro-worker { animation: proBreatheMobile 4.4s ease-in-out infinite; }
   .chat-composer { grid-template-columns: 1fr; }
   .chat-send { width: 100%; min-height: 44px; }
+}
+
+.is-low-power .topbar,
+.is-scrolling .topbar {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.is-scrolling .pro-worker,
+.is-scrolling .pro-head,
+.is-scrolling .pro-eye,
+.is-scrolling .pro-arm.right,
+.is-scrolling .mascot,
+.is-scrolling .mascot-head,
+.is-scrolling .mascot-arm {
+  animation-play-state: paused;
+}
+.photo-bg {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.is-low-power .photo-bg { will-change: auto; }
+.dark-section,
+.photo-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 720px;
+}
+#hero,
+#contact {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
 }

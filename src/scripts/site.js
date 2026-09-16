@@ -1317,6 +1317,4 @@
   initReveals();
   initSoftParallax();
   initCounters();
-  initContactForms();
-  initRiverAssistant();
 }());

@@ -7,8 +7,6 @@ import {
   faqSchema,
   serviceSchema,
   renderLayout,
-  leadHoneypotField,
-  turnstileWidget,
   riverContactSection,
 } from "./layout.js";
 
@@ -58,7 +56,7 @@ function trustStrip() {
     <span>Licensed #${site.license}</span>
     <span>Insured</span>
     <span>${site.yearsExperience}+ Years Experience</span>
-    <span>${escapeHtml(site.address.locality)} Local</span>
+    <span>Nevada County Local</span>
     <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer">Google Business Profile</a>
   </div>
 </section>`;
@@ -67,7 +65,7 @@ function trustStrip() {
 function contactSection(note) {
   return riverContactSection({
     heading: "Get a free estimate",
-    note: note || `Tell us about your ${site.address.locality} fence project — we will give you a straight answer and a real quote.`,
+    note: note || "Tell us about your Nevada County fence project — we will give you a straight answer and a real quote.",
   });
 }
 
@@ -203,27 +201,10 @@ function renderFenceQuote() {
           <div class="offer-card"><strong>Schedule Today</strong><span>Receive up to 15% off qualifying projects.</span></div>
           <div class="offer-card"><strong>Refer A Friend</strong><span>Receive up to 25% off for both you and your referred friend.</span></div>
         </div>
-        <form name="instant-quote" method="POST" action="/.netlify/functions/contact-lead" netlify-honeypot="bot-field" class="quote-lead-form" data-quote-lead-form>
-          <input type="hidden" name="form-name" value="instant-quote">
-          <input type="hidden" name="lead_type" value="fence-quote">
-          <input type="hidden" name="source" value="${escapeHtml(site.domain.replace(/^https?:\/\//, ""))}">
-          ${leadHoneypotField()}
-          <input type="hidden" name="estimated_range">
-          <input type="hidden" name="fence_type">
-          <input type="hidden" name="height">
-          <input type="hidden" name="footage">
-          <input type="hidden" name="gates">
-          <input type="hidden" name="removal">
-          <input type="hidden" name="city">
-          <input type="hidden" name="lead_id">
-          <div class="quote-field"><label for="quote-name">Name</label><input id="quote-name" name="name" type="text" autocomplete="name"></div>
-          <div class="quote-field"><label for="quote-phone">Phone Number (Required)</label><input id="quote-phone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="quote-field"><label for="quote-email">Email (Optional)</label><input id="quote-email" name="email" type="email" autocomplete="email"></div>
-          <div class="quote-field"><label for="quote-notes">Project Notes</label><textarea id="quote-notes" name="notes"></textarea></div>
-          ${turnstileWidget()}
-          <button class="btn-gold" type="submit">Get My Exact Quote</button>
-          <p class="quote-status" data-quote-status aria-live="polite"></p>
-        </form>
+        <div class="quote-call-cta">
+          <p class="estimate-note">Online quote requests are paused. Call Twin Rivers Fence for an exact quote.</p>
+          <a class="btn-gold" href="tel:${site.phoneTel}">Call ${escapeHtml(site.phoneDisplay)}</a>
+        </div>
       </aside>
     </div>
   </div>

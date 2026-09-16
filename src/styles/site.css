@@ -1963,6 +1963,9 @@ h1,h2 { color:var(--ink); text-shadow:none; } .eyebrow,.sub-text,.small,.fine-pr
 .offer-card strong { display: block; color: var(--ink); margin-bottom: .35rem; }
 .offer-card span { color: var(--soft); font-size: .92rem; }
 .quote-lead-form { display: grid; gap: .85rem; margin-top: 1rem; }
+.quote-call-cta { display: grid; gap: .85rem; margin-top: 1rem; justify-items: start; }
+.contact-call-card { display: grid; align-content: center; gap: 1rem; padding: 1.35rem 1.5rem; }
+.contact-call-card p { margin: 0; color: var(--soft); }
 .quote-status { min-height: 1.2rem; color: var(--soft); font-size: .9rem; }
 .quote-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .cf-turnstile { margin: .35rem 0 .15rem; }

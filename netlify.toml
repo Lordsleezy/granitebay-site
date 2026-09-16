@@ -2,6 +2,10 @@
   command = "node build.mjs"
   publish = "dist"
 
+[[edge_functions]]
+  path = "/*"
+  function = "block-forms"
+
 [[redirects]]
   from = "/service-areas/granite-bay"
   to = "/"

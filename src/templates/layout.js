@@ -209,7 +209,7 @@ function localBusinessSchema() {
       site.schemaDescription ||
       `Licensed fence contractor serving ${site.address.locality} with installation, repair, wood, vinyl, chain link, gates, and commercial fencing.`,
   };
-  if (site.geo?.latitude && site.geo?.longitude) {
+  if (site.geo && site.geo.latitude && site.geo.longitude) {
     schema.geo = {
       "@type": "GeoCoordinates",
       latitude: site.geo.latitude,

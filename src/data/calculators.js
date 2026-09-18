@@ -2,7 +2,7 @@
 export const calculatorPages = [
   {
     path: "/calculators/",
-    title: "Fence Calculators & Planning Tools | Granite Bay Fence Company",
+    title: "Granite Bay Fence Calculators | Local Planning Tools",
     description:
       "Free fence planning tools for Granite Bay homeowners—estimate cost, materials, concrete, posts, height, perimeter, and seasonal maintenance.",
     h1: "Fence Planning Tools for Granite Bay",
@@ -59,7 +59,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/fence-quote/",
-    title: "Fence Quote Calculator Granite Bay, CA | Twin Rivers Fence",
+    title: "Granite Bay Fence Quote Calculator | Free Planning Estimate",
     description:
       "Get a preliminary fence quote for Granite Bay. Choose fence type, height, and footage, then send your details for an exact Twin Rivers Fence follow-up.",
     h1: "Fence Quote Calculator",
@@ -97,7 +97,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/fence-cost-calculator/",
-    title: "Fence Cost Calculator Granite Bay, CA | Twin Rivers Fence",
+    title: "Granite Bay Fence Cost Calculator | Local Pricing Tool",
     description:
       "Estimate installed fence cost in Granite Bay. Wood, vinyl, and chain link ballpark ranges with gate and HOA adjustments.",
     h1: "Fence Cost Calculator",
@@ -143,7 +143,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/fence-material-calculator/",
-    title: "Fence Material Calculator | Granite Bay Fence Planning",
+    title: "Granite Bay Fence Material Calculator | Local Planning Tool",
     description:
       "Estimate fence posts, panels, rails, and pickets for wood, vinyl, and chain link runs in Granite Bay.",
     h1: "Fence Material Calculator",
@@ -187,7 +187,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/concrete-calculator/",
-    title: "Fence Post Concrete Calculator | Granite Bay, CA",
+    title: "Granite Bay Fence Concrete Calculator | Post Footings",
     description:
       "Calculate concrete bags needed for fence post holes—diameter, depth, and post count for Granite Bay installations.",
     h1: "Fence Post Concrete Calculator",
@@ -230,7 +230,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/post-calculator/",
-    title: "Fence Post Count Calculator | Granite Bay",
+    title: "Granite Bay Fence Post Calculator | Local Planning",
     description:
       "Calculate how many fence posts you need by length, spacing, corners, and end posts for Granite Bay fence runs.",
     h1: "Fence Post Calculator",
@@ -273,7 +273,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/fence-height-calculator/",
-    title: "Fence Height Guide | Granite Bay & Placer County",
+    title: "Granite Bay Fence Height Guide | Local Rules",
     description:
       "Informational fence height recommendations for privacy, pools, dogs, and HOA use in Granite Bay—not legal advice.",
     h1: "Fence Height Guide",
@@ -317,7 +317,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/property-perimeter-estimator/",
-    title: "Property Perimeter Estimator | Granite Bay Fence Planning",
+    title: "Granite Bay Property Perimeter Estimator | Fence Planning",
     description:
       "Estimate fence linear footage for rectangular lots or multi-segment Granite Bay property lines.",
     h1: "Property Perimeter Estimator",
@@ -361,7 +361,7 @@ export const calculatorPages = [
   },
   {
     path: "/calculators/maintenance-schedule-generator/",
-    title: "Fence Maintenance Schedule | Granite Bay Climate",
+    title: "Granite Bay Fence Maintenance Schedule | Local Climate",
     description:
       "Seasonal fence maintenance checklist for wood, vinyl, chain link, and iron in Granite Bay's hot-summer climate.",
     h1: "Fence Maintenance Schedule Generator",

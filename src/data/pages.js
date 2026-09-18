@@ -947,7 +947,7 @@ export const pages = [
   {
     "path": "/commercial-fencing/",
     "type": "service",
-    "title": "Commercial Fencing Granite Bay | Security & Site Fence",
+    "title": "Granite Bay Commercial Fencing | Security & Site Fence",
     "description": "Commercial fencing in Granite Bay and Placer County: security chain link, ornamental iron, and temp panels for jobsites. Licensed #1089233, insured.",
     "h1": "Commercial Fencing for Granite Bay Businesses",
     "eyebrow": "Commercial & industrial",

@@ -933,16 +933,42 @@
     return (n >>> 0).toString(16);
   }
 
+  function solvePow(startedAt) {
+    var n = 0;
+    var s = String(startedAt || "");
+    while (n < 250000) {
+      if (formProof(s + ":" + n).slice(0, 3) === "000") return String(n);
+      n++;
+    }
+    return "";
+  }
+
+  function markJsCookie() {
+    document.cookie = "tr_js=1; Path=/; SameSite=Lax; Max-Age=86400";
+  }
+
+  function bumpInt(form) {
+    var n = Number(form.dataset.int || 0) + 1;
+    form.dataset.int = String(n);
+    ensureHidden(form, "form_int", String(n));
+    return n;
+  }
+
   function stampFormStart(form) {
+    markJsCookie();
     if (!form.dataset.startedAt) form.dataset.startedAt = new Date().toISOString();
     ensureHidden(form, "form_started_at", form.dataset.startedAt);
     ensureHidden(form, "form_js", formProof(form.dataset.startedAt));
+    ensureHidden(form, "form_pow", solvePow(form.dataset.startedAt));
+    if (!form.dataset.int) ensureHidden(form, "form_int", "0");
   }
 
   function initContactForms() {
     var forms = Array.prototype.slice.call(document.querySelectorAll("form[name='contact']"));
     forms.forEach(function (form) {
       stampFormStart(form);
+      form.addEventListener("input", function () { bumpInt(form); });
+      form.addEventListener("change", function () { bumpInt(form); });
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         if (form.dataset.submitting === "true") return;
@@ -951,6 +977,7 @@
           return;
         }
         var utm = readUtms();
+        bumpInt(form);
         stampFormStart(form);
         ensureHidden(form, "lead_id", (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("lead-" + Date.now()));
         ensureHidden(form, "lead_type", "contact");
@@ -969,7 +996,11 @@
           status.classList.remove("is-error");
           status.textContent = "Sending\u2026";
         }
-        var body = new URLSearchParams(new FormData(form)).toString();
+        var body = {};
+        Array.prototype.slice.call(form.elements).forEach(function (el) {
+          if (!el.name) return;
+          body[el.name] = el.value;
+        });
         function fail() {
           delete form.dataset.submitting;
           resetTurnstile(form);
@@ -982,6 +1013,7 @@
         function succeed() {
           form.reset();
           delete form.dataset.startedAt;
+          delete form.dataset.int;
           stampFormStart(form);
           resetTurnstile(form);
           delete form.dataset.submitting;
@@ -993,8 +1025,9 @@
         }
         fetch("/.netlify/functions/contact-lead", {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json", "X-Fence-Lead": "1" },
-          body: body
+          headers: { "Content-Type": "application/json", Accept: "application/json", "X-Fence-Lead": "1" },
+          credentials: "same-origin",
+          body: JSON.stringify(body)
         }).then(function (res) {
           if (res.ok) succeed();
           else fail();
@@ -1180,6 +1213,8 @@
       assistantState.data.message = "Name: " + assistantState.data.name + "\nPhone: " + assistantState.data.phone + "\nEmail: " + assistantState.data.email + "\nWhat they want done: " + visitorRequest + "\n\nConversation:\n" + assistantState.transcript.join("\n");
       var leadId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("lead-" + Date.now());
       var startedAt = leadForm.dataset.startedAt || new Date().toISOString();
+      bumpInt(leadForm);
+      stampFormStart(leadForm);
       var cityField = leadForm.querySelector('[name="city"]');
       var payload = {
         lead_id: leadId,
@@ -1194,15 +1229,19 @@
         message: visitorRequest || "",
         project_details: assistantState.data.message || "",
         referrer: document.referrer || "",
-        form_started_at: startedAt,
-        form_js: formProof(startedAt),
-        "bot-field": ""
+        form_started_at: leadForm.dataset.startedAt || startedAt,
+        form_js: formProof(leadForm.dataset.startedAt || startedAt),
+        form_pow: leadForm.querySelector('[name="form_pow"]') ? leadForm.querySelector('[name="form_pow"]').value : solvePow(leadForm.dataset.startedAt || startedAt),
+        form_int: leadForm.dataset.int || "2",
+        "bot-field": "",
+        website: ""
       };
 
       try {
         var res = await fetch("/.netlify/functions/contact-lead", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json", "X-Fence-Lead": "1" },
+          credentials: "same-origin",
           body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error("lead failed");
@@ -1228,6 +1267,7 @@
     function handleUserMessage(text) {
       if (assistantState.responding) return;
       if (!text.trim()) return;
+      bumpInt(leadForm);
       if (/start another/i.test(text)) {
         assistantState.step = "name";
         assistantState.submitted = false;
@@ -1280,9 +1320,11 @@
       }
     });
     input.addEventListener("input", function () {
+      bumpInt(leadForm);
       setMascot(input.value ? "is-typing" : "", input.value ? "I'm following along." : "The chat on the left helps our team prepare the right follow-up.");
     });
 
+    stampFormStart(leadForm);
     startConversation();
   }
 
@@ -1317,4 +1359,6 @@
   initReveals();
   initSoftParallax();
   initCounters();
+  initContactForms();
+  initRiverAssistant();
 }());

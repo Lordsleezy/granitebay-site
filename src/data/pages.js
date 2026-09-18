@@ -3288,6 +3288,7 @@ export const pages = [
   {
     "path": "/service-areas/folsom/",
     "type": "location",
+    "noindex": true,
     "title": "Folsom Fence Contractor | Lake & Historic District",
     "description": "Fence installation and repair in Folsom, CA. Historic District, lake-area properties, and HOA tracts near Granite Bay. Twin Rivers Fence, License #1089233.",
     "h1": "Folsom Fence Contractor",
@@ -3362,6 +3363,7 @@ export const pages = [
   {
     "path": "/service-areas/roseville/",
     "type": "location",
+    "noindex": true,
     "title": "Roseville Fence Contractor | HOA Tract Fencing",
     "description": "Fence contractor in Roseville, CA. HOA-compliant installation and repair for master-planned communities near Granite Bay. License #1089233.",
     "h1": "Roseville Fence Contractor",
@@ -3499,6 +3501,7 @@ export const pages = [
   {
     "path": "/service-areas/rocklin/",
     "type": "location",
+    "noindex": true,
     "title": "Rocklin Fence Contractor | Granite Soil & HOA Tracts",
     "description": "Fence contractor in Rocklin, CA. Whitney Ranch, Stanford Ranch, granite hardpan footings, and pool fencing near Granite Bay. License #1089233.",
     "h1": "Rocklin Fence Contractor",
@@ -3572,6 +3575,7 @@ export const pages = [
   {
     "path": "/service-areas/lincoln/",
     "type": "location",
+    "noindex": true,
     "title": "Lincoln Fence Contractor | Sun City & New Construction",
     "description": "Fence installation in Lincoln, CA. Sun City Lincoln Hills, new-construction HOA fencing, and vinyl privacy near Granite Bay. License #1089233.",
     "h1": "Lincoln Fence Contractor",
@@ -3635,6 +3639,7 @@ export const pages = [
   {
     "path": "/service-areas/el-dorado-hills/",
     "type": "location",
+    "noindex": true,
     "title": "El Dorado Hills Fence Contractor | Foothill Estate Fencing",
     "description": "Fence installation in El Dorado Hills, CA. Rolling terrain, HOA communities, and view-fence designs near Granite Bay. Twin Rivers Fence, License #1089233.",
     "h1": "El Dorado Hills Fence Contractor",

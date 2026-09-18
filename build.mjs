@@ -121,7 +121,8 @@ function main() {
 
   for (const page of pages) {
     if (redirectedToHome.has(page.path)) continue;
-    urls.push(writePage(page.path, renderContentPage(page)));
+    const url = writePage(page.path, renderContentPage(page));
+    if (!page.noindex) urls.push(url);
   }
 
   for (const page of calculatorPages) {

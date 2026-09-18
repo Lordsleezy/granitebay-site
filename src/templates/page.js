@@ -297,6 +297,7 @@ ${contactSection(page.ctaNote)}
     schemas,
     includeCalculators: Boolean(options.calculatorId) && options.calculatorId !== "fence-quote",
     includeQuoteTool: isQuoteTool,
+    noindex: Boolean(page.noindex),
   });
 }
 

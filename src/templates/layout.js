@@ -3,12 +3,12 @@ import { site, nav, fenceNavItems, gateNavItems, deckNavItems, patioNavItems, se
 const assetVersion = "20260917-bot4";
 
 const citySites = [
-  { label: "Grass Valley", href: "https://grassvalleyfencing.com/" },
-  { label: "Rocklin", href: "https://rocklinfencing.com/" },
-  { label: "Roseville", href: "https://rosevillefencingca.com/" },
-  { label: "Folsom", href: "https://folsomfencing.com/" },
-  { label: "Elk Grove", href: "https://elkgrovefencing.com/" },
-  { label: "Granite Bay", href: "https://granitebayfencing.com/" },
+  { label: "Grass Valley Fence Company", href: "https://grassvalleyfencing.com/" },
+  { label: "Rocklin Fence Company", href: "https://rocklinfencing.com/" },
+  { label: "Roseville Fence Company", href: "https://rosevillefencingca.com/" },
+  { label: "Folsom Fence Company", href: "https://folsomfencing.com/" },
+  { label: "Elk Grove Fence Company", href: "https://elkgrovefencing.com/" },
+  { label: "Granite Bay Fence Company", href: "https://granitebayfencing.com/" },
 ];
 
 const navMenus = {
@@ -339,12 +339,16 @@ export function renderLayout({
   includeCalculators = false,
   includeQuoteTool = false,
   ogType = "website",
+  noindex = false,
 }) {
   const url = canonical || `${site.domain}${path}`;
   const allSchemas = [localBusinessSchema(), ...schemas.filter(Boolean)];
   const schemaTags = allSchemas
     .map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`)
     .join("\n");
+  const robots = noindex
+    ? "noindex,follow"
+    : "index,follow,max-image-preview:large";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -355,7 +359,7 @@ export function renderLayout({
 <link rel="canonical" href="${url}">
 <meta name="description" content="${escapeHtml(description)}">
 <meta name="theme-color" content="${site.themeColor}">
-<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="robots" content="${robots}">
 <meta property="og:type" content="${ogType}">
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(description)}">

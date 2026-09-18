@@ -3,6 +3,11 @@ import { escapeHtml, faqSchema, renderLayout, riverContactSection } from "./layo
 
 const homeFaqs = [
   {
+    question: "Are you a fence company in Granite Bay?",
+    answer:
+      "Yes. Granite Bay Fence Company is Twin Rivers Fence's dedicated Granite Bay site. Call (916) 906-2254 for estate lots, ranch lines, pool fencing, and custom gates in Granite Bay and Loomis.",
+  },
+  {
     question: "Do you install and repair fences in Granite Bay?",
     answer:
       "Yes. Twin Rivers Fence serves Granite Bay with fence installation, repair, custom gates, wood, vinyl, chain link, ornamental iron, pool fencing, and commercial projects across Placer County.",
@@ -10,7 +15,7 @@ const homeFaqs = [
   {
     question: "What neighborhoods in Granite Bay do you work in?",
     answer:
-      "We work throughout Granite Bay including Hidden Lakes, Los Lagos, Treelake Village, Douglas Boulevard corridors, Auburn Folsom Road estates, Eureka Road properties, and the Granite Bay High School area.",
+      "We work throughout Granite Bay including Hidden Lakes, Los Lagos, Treelake Village, Douglas Boulevard corridors, Auburn Folsom Road estates, Eureka Road properties, and the Granite Bay High School area. We also fence Loomis acreage lots from the same licensed crew.",
   },
   {
     question: "Are you licensed and insured in Placer County?",

@@ -176,9 +176,9 @@ function breadcrumbSchema(crumbs) {
 }
 
 function localBusinessSchema() {
-  return {
+  const schema = {
     "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
+    "@type": ["HomeAndConstructionBusiness", "FenceContractor"],
     "@id": `${site.domain}/#localbusiness`,
     name: site.localName,
     alternateName: site.name,
@@ -200,10 +200,26 @@ function localBusinessSchema() {
       addressRegion: site.address.region,
       addressCountry: site.address.country,
     },
+    identifier: {
+      "@type": "PropertyValue",
+      name: "California Contractors License",
+      value: site.license,
+    },
     description:
       site.schemaDescription ||
       `Licensed fence contractor serving ${site.address.locality} with installation, repair, wood, vinyl, chain link, gates, and commercial fencing.`,
   };
+  if (site.geo?.latitude && site.geo?.longitude) {
+    schema.geo = {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    };
+  }
+  if (site.googleMapsUrl) {
+    schema.hasMap = site.googleMapsUrl;
+  }
+  return schema;
 }
 
 function faqSchema(faqs = []) {

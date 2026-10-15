@@ -306,7 +306,9 @@ export const footerColumns = [
       { href: "/services/fence-replacement/", label: "Fence Replacement" },
       { href: "/wood-fencing/", label: "Wood Fence Contractors" },
       { href: "/temporary-fence-rental/", label: "Temporary Fence Rental" },
-      { href: "/custom-gates/", label: "Custom Gates" },
+      { href: "/custom-gates/", label: "Gate Installation" },
+      { href: "/gates/automatic-gates/", label: "Motorized Gates" },
+      { href: "/gates/gate-repair/", label: "Gate Repair" },
     ],
   },
   {

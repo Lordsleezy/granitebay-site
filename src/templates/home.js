@@ -76,7 +76,9 @@ export function renderHomePage() {
   <div class="services-grid">
     <article class="service-card"><h3><a href="/services/fence-installation/">Fence Installation Granite Bay</a></h3><p>New fence lines planned for hillside lots, HOA specs, and how your estate is actually used.</p></article>
     <article class="service-card"><h3><a href="/fence-repair/">Fence Repair Granite Bay</a></h3><p>Leaning posts on sloped terrain, storm damage, broken panels, and driveway gates that stopped closing right.</p></article>
-    <article class="service-card"><h3><a href="/custom-gates/">Custom Gates Granite Bay</a></h3><p>Driveway entries, automated iron gates, and side-yard access built for daily use on larger properties.</p></article>
+    <article class="service-card"><h3><a href="/custom-gates/">Gate Installation Granite Bay</a></h3><p>Driveway entries, motorized iron gates, and side-yard access built for daily use on larger properties.</p></article>
+    <article class="service-card"><h3><a href="/gates/automatic-gates/">Motorized Gates</a></h3><p>Automatic swing and slide operators, keypads, remotes, and opener repair.</p></article>
+    <article class="service-card"><h3><a href="/gates/gate-repair/">Gate Repair</a></h3><p>Sagging driveway leaves, broken latches, and motorized opener service.</p></article>
     <article class="service-card"><h3><a href="/fence-types/hoa-fence/">HOA Fencing</a></h3><p>Spec sheets and submittal support for Hidden Lakes, Los Lagos, and Treelake Village communities.</p></article>
     <article class="service-card"><h3><a href="/fence-types/pool-fence/">Pool Fencing</a></h3><p>Code-compliant barriers with self-latching gates for backyard pools near Folsom Lake.</p></article>
     <article class="service-card"><h3><a href="/vinyl-fencing/">Vinyl Fence Granite Bay</a></h3><p>Low-maintenance privacy and HOA-friendly lines for side yards and pool decks.</p></article>
@@ -131,7 +133,9 @@ export function renderHomePage() {
     <a class="expanded-area-tag" href="/services/fence-installation/">Fence Installation Granite Bay</a>
     <a class="expanded-area-tag" href="/commercial-fencing/">Commercial Fencing Granite Bay</a>
     <a class="expanded-area-tag" href="/fence-repair/">Fence Repair Granite Bay</a>
-    <a class="expanded-area-tag" href="/custom-gates/">Custom Gates Granite Bay</a>
+    <a class="expanded-area-tag" href="/custom-gates/">Gate Installation Granite Bay</a>
+    <a class="expanded-area-tag" href="/gates/automatic-gates/">Motorized Gates Granite Bay</a>
+    <a class="expanded-area-tag" href="/gates/gate-repair/">Gate Repair Granite Bay</a>
     <a class="expanded-area-tag" href="/wood-fencing/">Wood Fence Granite Bay</a>
     <a class="expanded-area-tag" href="/vinyl-fencing/">Vinyl Fence Granite Bay</a>
     <a class="expanded-area-tag" href="/chain-link-fencing/">Chain Link Fence Granite Bay</a>

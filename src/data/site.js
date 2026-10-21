@@ -8,6 +8,8 @@ export const site = {
   license: "1089233",
   email: null,
   yearsExperience: 40,
+  hoursDisplay: "Monday–Friday 8:00 AM–5:00 PM",
+  openingHours: ["Mo-Fr 08:00-17:00"],
   priceRange: "$$",
   parentUrl: "https://twinriversfence.com/",
   googleReviewsUrl: "https://maps.app.goo.gl/rXBxsJXV2E6Z3Luu6",

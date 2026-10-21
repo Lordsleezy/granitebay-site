@@ -185,6 +185,15 @@ function localBusinessSchema() {
     url: site.domain + "/",
     telephone: site.phoneTel,
     priceRange: site.priceRange,
+    openingHours: site.openingHours || ["Mo-Fr 08:00-17:00"],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "17:00",
+      },
+    ],
     image: site.ogImage,
     sameAs: site.socialSameAs,
     brand: { "@type": "Brand", name: site.name },
@@ -310,7 +319,7 @@ function renderFooter() {
 <footer class="site-footer">
   <div class="footer-grid">${cols}${cityCol}</div>
   <div class="footer-bottom">
-    <div>${escapeHtml(site.name)} — License #${site.license} — ${escapeHtml(site.address.locality)}, ${site.address.region} — <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
+    <div>${escapeHtml(site.name)} — License #${site.license} — ${escapeHtml(site.address.locality)}, ${site.address.region} — ${escapeHtml(site.hoursDisplay || "Monday–Friday 8:00 AM–5:00 PM")} — <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a></div>
     <div class="footer-legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/sitemap.xml">Sitemap</a></div>
   </div>
 </footer>`;

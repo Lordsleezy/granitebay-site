@@ -35,7 +35,7 @@ export function renderHomePage() {
     <div class="hero-inner">
       <p class="eyebrow">Granite Bay, California · Licensed #${site.license}</p>
       <h1>Granite Bay Fence Company</h1>
-      <p class="sub">Granite Bay Fence Company — free estimates. Call ${site.phoneDisplay} for estate lots, ranch lines, pool fencing, and custom gates in Granite Bay and Loomis.</p>
+      <p class="sub">Twin Rivers Fence — Granite Bay estate, ranch, pool fences, and custom gates. Call ${site.phoneDisplay}.</p>
       <a href="#contact" class="btn-gold">Get a Free Estimate</a>
       <div class="google-trust-bar" aria-label="Twin Rivers Fence Google review summary">
         <a class="google-review-link" href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer"><span class="google-star-row" aria-label="Reviews on Google">Google reviews</span> — Twin Rivers Fence</a>
@@ -196,9 +196,9 @@ export function renderHomePage() {
   })}`;
 
   return renderLayout({
-    title: "Granite Bay Fence Company | Free Estimates | License #1089233",
+    title: "Granite Bay Fence Company | Twin Rivers | Estate & Ranch",
     description:
-      "Need a Granite Bay fence company? Estate lots, ranch lines, pool fencing, and custom gates in Granite Bay and Loomis. Licensed #1089233. Free estimates — call (916) 906-2254.",
+      "Twin Rivers Fence builds estate, ranch, pool fences, and custom gates in Granite Bay and Loomis. Licensed #1089233. Call (916) 906-2254.",
     path: "/",
     body,
     schemas: [faqSchema(homeFaqs)],

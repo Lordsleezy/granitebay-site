@@ -3,7 +3,7 @@ export const pages = [
   {
     "path": "/services/",
     "type": "hub",
-    "title": "Fence Services in Granite Bay, CA",
+    "title": "Fence Services in Granite Bay, CA | Granite Bay Fence Company",
     "description": "Fence services in Granite Bay: installation, repair, replacement, HOA fencing, and commercial perimeter work. Twin Rivers Fence, licensed #1089233, Placer County.",
     "h1": "Fence Services for Granite Bay Estates & HOAs",
     "eyebrow": "Licensed #1089233",
@@ -72,7 +72,7 @@ export const pages = [
         "label": "Cost Calculator"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay Service Area"
       }
     ],
@@ -81,7 +81,7 @@ export const pages = [
   {
     "path": "/services/fence-installation/",
     "type": "service",
-    "title": "Fence Installation Granite Bay, CA",
+    "title": "Fence Installation Granite Bay, CA | Granite Bay Fence Company",
     "description": "Professional fence installation in Granite Bay. Wood, vinyl, iron, and horse fencing for estate lots, slopes, and HOA communities. Licensed #1089233. Free estimates.",
     "h1": "Fence Installation for Granite Bay Properties",
     "eyebrow": "New fence projects",
@@ -151,7 +151,7 @@ export const pages = [
         "label": "Material Calculator"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ],
@@ -160,7 +160,7 @@ export const pages = [
   {
     "path": "/fence-repair/",
     "type": "service",
-    "title": "Fence Repair Granite Bay, CA",
+    "title": "Fence Repair Granite Bay, CA | Granite Bay Fence Company",
     "description": "Fence repair in Granite Bay: leaning posts on slopes, storm damage, rot, and gate failures. Licensed #1089233. We repair fences we did not install.",
     "h1": "Fence Repair for Granite Bay Homes & Estates",
     "eyebrow": "Repair & restore",
@@ -190,6 +190,19 @@ export const pages = [
         "heading": "Fast, Straightforward Scheduling",
         "paragraphs": [
           "Send photos of the damage when you call. On straightforward panel swaps and single-post resets we can often quote before the site visit, which speeds scheduling on busy estate lots where access and slope already complicate the job."
+        ]
+      },
+      {
+        "heading": "What we inspect on a Granite Bay repair visit",
+        "paragraphs": [
+          "Estate and hillside lots need a different repair read than a flat tract yard. We walk downhill posts, oak-root conflicts, and driveway gate operators before quoting, because a cheap panel swap fails again if the footing or grade is the real problem.",
+          "Photos of the slope, the failed section, and the gate opening help us plan access and materials. Call (916) 906-2254 if a pool barrier or horse pasture is open after a storm."
+        ],
+        "bullets": [
+          "Downhill post lean and footing depth on grade",
+          "Oak-root displacement along older estate lines",
+          "Driveway gate sag, hinges, and operators",
+          "Storm-thrown panels on Folsom Lake wind corridors"
         ]
       }
     ],
@@ -229,7 +242,7 @@ export const pages = [
         "label": "Maintenance Guide"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ],
@@ -444,7 +457,7 @@ export const pages = [
         "label": "Pool Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ],
@@ -518,7 +531,7 @@ export const pages = [
         "label": "Fence Maintenance"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ],
@@ -867,7 +880,7 @@ export const pages = [
         "label": "Ranch Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -939,7 +952,7 @@ export const pages = [
         "label": "Ornamental Iron"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ]
@@ -947,7 +960,7 @@ export const pages = [
   {
     "path": "/commercial-fencing/",
     "type": "service",
-    "title": "Granite Bay Commercial Fencing | Security & Site Fence",
+    "title": "Commercial Fencing Granite Bay | Security & Site Fence",
     "description": "Commercial fencing in Granite Bay and Placer County: security chain link, ornamental iron, and temp panels for jobsites. Licensed #1089233, insured.",
     "h1": "Commercial Fencing for Granite Bay Businesses",
     "eyebrow": "Commercial & industrial",
@@ -1078,7 +1091,7 @@ export const pages = [
         "label": "Cost Calculator"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ]
@@ -1186,6 +1199,13 @@ export const pages = [
         "heading": "Fire Hardening and Maintenance",
         "paragraphs": [
           "Wood is combustible — we discuss defensible-space placement, non-combustible transitions near structures, and stain schedules every two to four years. Our staining service extends life through Granite Bay's sharp wet-to-dry seasonal swing and keeps color consistent with HOA earth-tone requirements."
+        ]
+      },
+      {
+        "heading": "How a Granite Bay wood fence estimate works",
+        "paragraphs": [
+          "Estate footage, slope, and granite pockets change a Granite Bay wood quote more than board style does. We walk the line for stepped panels, gate placement, and HOA view-fence rules before we order material.",
+          "Photos of the grade and any existing perimeter help. Call (916) 906-2254 for a site visit — long Douglas Ranch or Los Lagos runs are priced by actual conditions, not a published per-foot number."
         ]
       }
     ],
@@ -1938,7 +1958,7 @@ export const pages = [
         "label": "Privacy Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -2005,7 +2025,7 @@ export const pages = [
         "label": "Driveway Gates"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ]
@@ -2058,7 +2078,7 @@ export const pages = [
         "label": "Chain Link"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -2213,6 +2233,13 @@ export const pages = [
           "Driveway swing and slide gates",
           "Automatic openers and keypads",
           "Gate repair and hardware upgrades"
+        ]
+      },
+      {
+        "heading": "What to expect from a Granite Bay gate estimate",
+        "paragraphs": [
+          "Estate driveway gates are quoted from opening width, grade, rock or clay at the post holes, and whether a swing or slide leaf fits the approach. We inspect existing posts before we quote an opener so you are not automating a sagging frame.",
+          "Photos of the entry and any HOA view-fence notes help. Call (916) 906-2254 for a site visit on long approaches."
         ]
       }
     ],
@@ -3160,7 +3187,7 @@ export const pages = [
     ],
     "related": [
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -3188,9 +3215,9 @@ export const pages = [
   {
     "path": "/service-areas/granite-bay/",
     "type": "location",
-    "title": "Granite Bay Fence Service Area | Estate & Lake-Area Fencing",
+    "title": "Granite Bay Fence Company | Estate & Lake-Area Fencing",
     "description": "Granite Bay fence contractor for luxury estates, HOA communities, and Folsom Lake-adjacent properties. Hidden Lakes, Los Lagos, slope fencing, fire hardening. License #1089233.",
-    "h1": "Granite Bay Fence Service Area",
+    "h1": "Granite Bay Fence Company",
     "eyebrow": "Granite Bay, CA",
     "intro": "Granite Bay is one of Placer County's most distinctive fence markets — custom homes on half-acre to multi-acre lots, strict HOA architectural review in communities like Hidden Lakes and Los Lagos, and a Folsom Lake-adjacent climate that pushes homeowners toward view-preserving iron on one side of the property and solid privacy on the other. Granite Bay Fence Company knows the terrain from Douglas Boulevard to Auburn Folsom Road, the slope challenges near Treelake Village, and the permitting path through Placer County Building Services.",
     "sections": [
@@ -3288,7 +3315,6 @@ export const pages = [
   {
     "path": "/service-areas/folsom/",
     "type": "location",
-    "noindex": true,
     "title": "Folsom Fence Contractor | Lake & Historic District",
     "description": "Fence installation and repair in Folsom, CA. Historic District, lake-area properties, and HOA tracts near Granite Bay. Twin Rivers Fence, License #1089233.",
     "h1": "Folsom Fence Contractor",
@@ -3350,7 +3376,7 @@ export const pages = [
         "label": "Pool Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -3363,7 +3389,6 @@ export const pages = [
   {
     "path": "/service-areas/roseville/",
     "type": "location",
-    "noindex": true,
     "title": "Roseville Fence Contractor | HOA Tract Fencing",
     "description": "Fence contractor in Roseville, CA. HOA-compliant installation and repair for master-planned communities near Granite Bay. License #1089233.",
     "h1": "Roseville Fence Contractor",
@@ -3425,7 +3450,7 @@ export const pages = [
         "label": "HOA Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -3492,7 +3517,7 @@ export const pages = [
         "label": "Property Line Guide"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ],
@@ -3501,7 +3526,6 @@ export const pages = [
   {
     "path": "/service-areas/rocklin/",
     "type": "location",
-    "noindex": true,
     "title": "Rocklin Fence Contractor | Granite Soil & HOA Tracts",
     "description": "Fence contractor in Rocklin, CA. Whitney Ranch, Stanford Ranch, granite hardpan footings, and pool fencing near Granite Bay. License #1089233.",
     "h1": "Rocklin Fence Contractor",
@@ -3562,7 +3586,7 @@ export const pages = [
         "label": "Pool Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -3575,7 +3599,6 @@ export const pages = [
   {
     "path": "/service-areas/lincoln/",
     "type": "location",
-    "noindex": true,
     "title": "Lincoln Fence Contractor | Sun City & New Construction",
     "description": "Fence installation in Lincoln, CA. Sun City Lincoln Hills, new-construction HOA fencing, and vinyl privacy near Granite Bay. License #1089233.",
     "h1": "Lincoln Fence Contractor",
@@ -3630,7 +3653,7 @@ export const pages = [
         "label": "HOA Installation"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ],
@@ -3639,7 +3662,6 @@ export const pages = [
   {
     "path": "/service-areas/el-dorado-hills/",
     "type": "location",
-    "noindex": true,
     "title": "El Dorado Hills Fence Contractor | Foothill Estate Fencing",
     "description": "Fence installation in El Dorado Hills, CA. Rolling terrain, HOA communities, and view-fence designs near Granite Bay. Twin Rivers Fence, License #1089233.",
     "h1": "El Dorado Hills Fence Contractor",
@@ -3696,7 +3718,7 @@ export const pages = [
         "label": "HOA Fence"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       },
       {
@@ -4355,7 +4377,7 @@ export const pages = [
         "label": "Consultation"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ]
@@ -4412,7 +4434,7 @@ export const pages = [
         "label": "HOA Installation Service"
       },
       {
-        "href": "/",
+        "href": "/service-areas/granite-bay/",
         "label": "Granite Bay"
       }
     ]

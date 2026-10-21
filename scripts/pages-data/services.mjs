@@ -170,6 +170,19 @@ export const servicesPages = [
           "Send photos of the damage when you call. On straightforward panel swaps and single-post resets we can often quote before the site visit, which speeds scheduling on busy estate lots where access and slope already complicate the job.",
         ],
       },
+      {
+        heading: "What we inspect on a Granite Bay repair visit",
+        paragraphs: [
+          "Estate and hillside lots need a different repair read than a flat tract yard. We walk downhill posts, oak-root conflicts, and driveway gate operators before quoting, because a cheap panel swap fails again if the footing or grade is the real problem.",
+          "Photos of the slope, the failed section, and the gate opening help us plan access and materials. Call (916) 906-2254 if a pool barrier or horse pasture is open after a storm.",
+        ],
+        bullets: [
+          "Downhill post lean and footing depth on grade",
+          "Oak-root displacement along older estate lines",
+          "Driveway gate sag, hinges, and operators",
+          "Storm-thrown panels on Folsom Lake wind corridors",
+        ],
+      },
     ],
     faqs: [
       {

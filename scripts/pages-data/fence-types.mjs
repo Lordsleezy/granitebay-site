@@ -96,6 +96,13 @@ export const fenceTypePages = [
           "Wood is combustible — we discuss defensible-space placement, non-combustible transitions near structures, and stain schedules every two to four years. Our staining service extends life through Granite Bay's sharp wet-to-dry seasonal swing and keeps color consistent with HOA earth-tone requirements.",
         ],
       },
+      {
+        heading: "How a Granite Bay wood fence estimate works",
+        paragraphs: [
+          "Estate footage, slope, and granite pockets change a Granite Bay wood quote more than board style does. We walk the line for stepped panels, gate placement, and HOA view-fence rules before we order material.",
+          "Photos of the grade and any existing perimeter help. Call (916) 906-2254 for a site visit — long Douglas Ranch or Los Lagos runs are priced by actual conditions, not a published per-foot number.",
+        ],
+      },
     ],
     faqs: [
       {

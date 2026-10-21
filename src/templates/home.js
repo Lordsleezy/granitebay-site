@@ -48,7 +48,7 @@ export function renderHomePage() {
   </section>
 
   <section class="photo-section" id="cedar">
-    <img class="photo-bg" src="https://images.unsplash.com/photo-1604015641586-6fa03629f976?auto=format&fit=crop&w=1920&q=85" alt="Wood fence installation along a Granite Bay estate property line" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
+    <img class="photo-bg" src="https://images.unsplash.com/photo-1604015641586-6fa03629f976?auto=format&fit=crop&w=1920&q=85" alt="Stock photo of a wood privacy fence along a residential property line" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
     <div class="photo-content left"><span class="section-tag">Wood Fence Granite Bay</span><h2>Crafted for estate lots.<br>Built to last.</h2><p>Wood fencing in Granite Bay planned for sloped lots, shared property lines, and HOA-approved styles — from redwood privacy screens near Folsom Lake to cedar lines along Auburn Folsom Road.</p></div>
   </section>
 
@@ -86,7 +86,7 @@ export function renderHomePage() {
   </section>
 
   <section class="photo-section overlay-right" id="vinyl">
-    <img class="photo-bg" src="https://images.unsplash.com/photo-1593285247650-cd7bb44adcfd?auto=format&fit=crop&w=1920&q=85" alt="Clean vinyl privacy fence on a Granite Bay residential estate" width="1920" height="1080" loading="lazy" decoding="async">
+    <img class="photo-bg" src="https://images.unsplash.com/photo-1593285247650-cd7bb44adcfd?auto=format&fit=crop&w=1920&q=85" alt="Stock photo of a vinyl privacy fence in a residential yard" width="1920" height="1080" loading="lazy" decoding="async">
     <div class="photo-content right"><span class="section-tag">Vinyl Fence Granite Bay</span><h2>Low upkeep.<br>HOA-approved.</h2><p>Vinyl fencing for clean privacy, pool areas, and street-facing yards that need a polished look without a recurring stain cycle.</p></div>
   </section>
 
@@ -111,7 +111,7 @@ export function renderHomePage() {
   </section>
 
   <section class="photo-section" id="chain-link">
-    <img class="photo-bg" src="https://images.unsplash.com/photo-1586574208875-cd77c2bfb851?auto=format&fit=crop&w=1920&q=85" alt="Chain link fence securing a Granite Bay property boundary" width="1920" height="1080" loading="lazy" decoding="async">
+    <img class="photo-bg" src="https://images.unsplash.com/photo-1586574208875-cd77c2bfb851?auto=format&fit=crop&w=1920&q=85" alt="Stock photo of a chain-link fence along a property boundary" width="1920" height="1080" loading="lazy" decoding="async">
     <div class="photo-content left"><span class="section-tag">Chain Link Fence Granite Bay</span><h2>Built to work.<br>Not just look good.</h2><p>Chain link for practical security, dog runs, commercial yards, horse paddocks, and long property lines across Granite Bay.</p></div>
   </section>
 
@@ -161,7 +161,7 @@ export function renderHomePage() {
     </div>
   </section>
 
-  <section class="photo-section short overlay-soft"><img class="photo-bg" src="https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=1920&q=85" alt="Granite Bay, California residential estate neighborhood" width="1920" height="1080" loading="lazy" decoding="async"><h2 class="panorama-title">Granite Bay fence work you can count on.</h2></section>
+  <section class="photo-section short overlay-soft"><img class="photo-bg" src="https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=1920&q=85" alt="Stock photo of a suburban neighborhood street" width="1920" height="1080" loading="lazy" decoding="async"><h2 class="panorama-title">Granite Bay fence work you can count on.</h2></section>
 
   <section class="dark-section alt google-reviews-section" data-google-reviews-section>
     <div class="google-review-intro">

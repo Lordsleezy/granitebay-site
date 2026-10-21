@@ -51,6 +51,12 @@ function faqBlock(faqs = []) {
 </section>`;
 }
 
+function localTrustLabel() {
+  const locality = site.address?.locality || "Local";
+  if (locality === "Grass Valley") return "Nevada County Local";
+  return `${locality} Local`;
+}
+
 function trustStrip() {
   return `
 <section class="trust-strip" aria-label="Trust signals">
@@ -58,16 +64,17 @@ function trustStrip() {
     <span>Licensed #${site.license}</span>
     <span>Insured</span>
     <span>${site.yearsExperience}+ Years Experience</span>
-    <span>Nevada County Local</span>
+    <span>${localTrustLabel()}</span>
     <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener noreferrer">Google Business Profile</a>
   </div>
 </section>`;
 }
 
 function contactSection(note) {
+  const city = site.address?.locality || "your";
   return riverContactSection({
     heading: "Get a free estimate",
-    note: note || "Tell us about your Nevada County fence project — we will give you a straight answer and a real quote.",
+    note: note || `Tell us about your ${city} fence project — we will give you a straight answer and a real quote.`,
   });
 }
 

@@ -32,6 +32,13 @@ export const gatePages = [
           "Gate repair and hardware upgrades",
         ],
       },
+      {
+        heading: "What to expect from a Granite Bay gate estimate",
+        paragraphs: [
+          "Estate driveway gates are quoted from opening width, grade, rock or clay at the post holes, and whether a swing or slide leaf fits the approach. We inspect existing posts before we quote an opener so you are not automating a sagging frame.",
+          "Photos of the entry and any HOA view-fence notes help. Call (916) 906-2254 for a site visit on long approaches.",
+        ],
+      },
     ],
     faqs: [
       {
